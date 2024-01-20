@@ -1,0 +1,74 @@
+name: vidyaniketan
+description: "E-Commerce Application"
+
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.2.3 <4.0.0'
+
+
+  #------Packages----#
+dependencies:
+  flutter:
+    sdk: flutter
+
+  #------Utility Packages----#
+
+
+  #--Fonts--#
+  google_fonts: ^6.1.0
+
+
+  #------Icons----#
+  cupertino_icons: ^1.0.2
+  iconsax: ^0.0.8
+
+
+
+  #-----State Management----#
+  get: ^4.6.6
+  firebase_core: ^2.24.2
+  firebase_auth: ^4.16.0
+  cloud_firestore: ^4.14.0
+  firebase_storage: ^11.6.0
+  pinput: ^3.0.1
+
+
+
+
+  #--Product Specific Packages--#
+
+
+
+  #------Packages End----#
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+flutter_launcher_icons:
+  android: "launcher_icon"
+  image_path: "assets/icons/brands/vidya_logo.png"
+  min_sdk_android: 21
+  windows:
+    generate: true
+    image_path: "assets/icons/brands/vidya_logo.png"
+    icon_size: 48 # min:48, max:256, default: 48
+
+flutter_app_name:
+  name: "Vidyaniketan"
+
+
+  flutter_lints: ^2.0.0
+
+
+
+flutter:
+  uses-material-design: true
+
+  #--Local Assets--#
+
+  assets:
+    - assets/logos/
+    - assets/icons/brands/
+    - assets/images/

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "41792109524",
+    "project_id": "vidyaniketanfirebase",
+    "storage_bucket": "vidyaniketanfirebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:41792109524:android:c03fc4d7fdd4a866353441",
+        "android_client_info": {
+          "package_name": "com.example.vidyaniketan"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRWanmi1fys6-FPElvthYSQjV0JgEMqeU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
