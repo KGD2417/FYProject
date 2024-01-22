@@ -1,0 +1,6 @@
+package `in`.edu.vidyaniketan.vidyaniketan_app
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity: FlutterActivity() {
+}

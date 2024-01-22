@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1015615339814",
+    "project_id": "vidyaniketan-cf6ac",
+    "storage_bucket": "vidyaniketan-cf6ac.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1015615339814:android:38323f6cb4863850c195e7",
+        "android_client_info": {
+          "package_name": "in.edu.vidyaniketan.vidyaniketan_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbEzQ0jtElTm1YNp5DZAQq582kRtl_lgE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
