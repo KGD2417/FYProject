@@ -107,6 +107,9 @@ class _ChangePassScreenState extends State<ChangePassScreen> {
                           width: double.infinity,
                           child: ElevatedButton(
                               onPressed: () {
+                                showDialog(context: context, builder: (context){
+                                  return const Center(child: CircularProgressIndicator());
+                                });
                                 changePass();
                               },
                               child: Text(
@@ -132,6 +135,7 @@ class _ChangePassScreenState extends State<ChangePassScreen> {
         FirebaseFirestore.instance.collection('users');
     usersRef.doc(user.phoneNumber).update(
         {'pass': passController.text.toString(), 'passCheck': 1}).then((value) {
+          Navigator.of(context).pop();
       showDialog(
           context: context,
           builder: (context) => const AlertDialog(

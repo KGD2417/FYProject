@@ -9,6 +9,7 @@ import 'package:pinput/pinput.dart';
 import 'package:vidyaniketan_app/screens/home.dart';
 
 import '../utils/spacing_styles.dart';
+import 'base_screen.dart';
 import 'chg_pass.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -34,11 +35,12 @@ class _LoginScreenState extends State<LoginScreen> {
         verificationCompleted: (PhoneAuthCredential credential) {},
         verificationFailed: (FirebaseAuthException ex) {},
         codeSent: (String verificationId, int? resendToken) {
+          Navigator.of(context).pop();
           showModalBottomSheet(
               context: context,
               builder: (BuildContext context) {
                 return SizedBox(
-                  height: 600,
+                  height: 650,
                   child: Padding(
                     padding: const EdgeInsets.all(30.0),
                     child: Column(
@@ -84,6 +86,9 @@ class _LoginScreenState extends State<LoginScreen> {
                               // OTP CHECKING
                               onPressed: () async {
                                 try {
+                                  showDialog(context: context, builder: (context){
+                                    return const Center(child: CircularProgressIndicator());
+                                  });
                                   PhoneAuthCredential credential = await PhoneAuthProvider
                                       .credential(
                                       verificationId: verificationId,
@@ -96,16 +101,17 @@ class _LoginScreenState extends State<LoginScreen> {
                                         .collection('users').doc(
                                         user!.phoneNumber).get().then((
                                         DocumentSnapshot documentSnapshots) {
-                                          Navigator.pop(context);
-                                      if (documentSnapshots.get('passCheck')==0){
-                                        Navigator.pushReplacement(context,
-                                            MaterialPageRoute(builder: (
-                                                context) => const ChangePassScreen()));
+                                          Navigator.of(context).pop();
+                                          Navigator.of(context).pop();
+                                          if (documentSnapshots.get('passCheck')==0){
+                                            Navigator.pushReplacement(context,
+                                                MaterialPageRoute(builder: (
+                                                  context) => const ChangePassScreen()));
                                       }
                                       else{
                                         Navigator.pushReplacement(context,
                                             MaterialPageRoute(builder: (
-                                                context) => const HomeScreen()));
+                                                context) => const BaseScreen()));
                                       }
                                     });
                                   });
@@ -217,7 +223,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           children: [
                             Row(
                               children: [
-                                Checkbox(value: true, onChanged: (value) {}),
+                                Checkbox(value: true, onChanged: (value) {
+
+                                },),
                                 const Text("Remember Me"),
                               ],
                             ),
@@ -232,6 +240,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             height: 50,
                             child: ElevatedButton(
                                 onPressed: () async {
+                                  showDialog(context: context, builder: (context){
+                                    return const Center(child: CircularProgressIndicator());
+                                  });
+
                                   String number = "+91${phoneController.text}";
                                   var kk = FirebaseFirestore.instance
                                       .collection('users').doc(number)
@@ -276,30 +288,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ))),
 
 
-                        //Temp Button
+                        //Tenp Button
                         // ElevatedButton(onPressed: (){
-                        //   String number = "+91${phoneController.text}";
-                        //   var kk = FirebaseFirestore.instance.collection('users').doc(number).get().then((DocumentSnapshot documentSnapshot){
-                        //     if(documentSnapshot.exists){
-                        //       if(documentSnapshot.get('username')== userController.text.toString() && documentSnapshot.get('pass')==passController.text.toString()){
-                        //         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>ChangePassScreen()));
-                        //       }
-                        //       else{
-                        //         showDialog(context: context, builder: (context)=>const AlertDialog(
-                        //           title: Text("Error"),
-                        //           content: Text("Invalid Credentials"),
-                        //         ));
-                        //       }
-                        //     }
-                        //     else{
-                        //       showDialog(context: context, builder: (context)=>const AlertDialog(
-                        //         title: Text("Error"),
-                        //         content: Text("User Doesn't Exist."),
-                        //       ));
-                        //     }
-                        //   });
-                        //
-                        //
+                        //         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>BaseScreen()));
                         // }, child: Text("Change Pass"))
                       ],
                     ),

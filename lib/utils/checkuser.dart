@@ -1,6 +1,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:vidyaniketan_app/screens/base_screen.dart';
 import 'package:vidyaniketan_app/screens/home.dart';
 import 'package:vidyaniketan_app/screens/login.dart';
 
@@ -14,7 +15,7 @@ class CheckUser extends StatelessWidget {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return HomeScreen();
+            return BaseScreen();
           }
           else {
             return LoginScreen();
