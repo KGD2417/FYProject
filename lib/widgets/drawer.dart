@@ -10,7 +10,7 @@ class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Colors.blueAccent,
+      backgroundColor: Colors.blue,
       child: Column(
         children: [
           //Drawer Header

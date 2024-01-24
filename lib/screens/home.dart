@@ -9,6 +9,8 @@ import 'package:vidyaniketan_app/screens/login.dart';
 import 'package:vidyaniketan_app/utils/date.dart' as date_util;
 
 import '../utils/search_text_field.dart';
+import '../widgets/cat_lis.dart';
+import '../widgets/category.dart';
 import '../widgets/drawer.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -24,11 +26,13 @@ class _HomeScreenState extends State<HomeScreen> {
     return const AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.light,
       child: Scaffold(
-        body: Column(
-          children: [
-            MyAppBar(),
-            Body(),
-          ],
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              MyAppBar(),
+              Body(),
+            ],
+          ),
         ),
       ),
     );
@@ -73,78 +77,111 @@ class _BodyState extends State<Body> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 8.0),
-                  child: Text(
-                    "Calender",
-                    style: Theme.of(context).textTheme.headlineMedium,
-                  ),
-                )
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
-            child: Container(
-              height: 150,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  shape: BoxShape.rectangle,
-                  color: Colors.blue,
-                  borderRadius: BorderRadius.circular(20)),
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      '${currentDateTime.day.toString() + " " + date_util.DateUtils.months[currentDateTime.month - 1]} ${currentDateTime.year}',
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                          color: Colors.white),
-                    ),
-                    Text(
-                        date_util.DateUtils.weekdays[currentDateTime.weekday - 1]
-                            .toString(),
-                        style:
-                            const TextStyle(fontSize: 16, color: Colors.white)),
-                    Container(
-                      height: 90,
-                      width: double.infinity,
-                      decoration: const BoxDecoration(
-                          shape: BoxShape.rectangle,
-                          color: Colors.white,
-                          borderRadius: BorderRadius.only(
-                              bottomRight: Radius.circular(15),
-                              bottomLeft: Radius.circular(15),
-                              topLeft: Radius.circular(8),
-                              topRight: Radius.circular(8))),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Current Period: $currentLec",style: TextStyle(fontSize: 16),)
-                          ],
-                        ),
-                      ),
-                    )
-                  ],
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child: Text(
+                  "Calender",
+                  style: Theme.of(context).textTheme.headlineMedium,
                 ),
+              )
+            ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
+          child: Container(
+            height: 150,
+            width: double.infinity,
+            decoration: BoxDecoration(
+                shape: BoxShape.rectangle,
+                color: Colors.blue,
+                borderRadius: BorderRadius.circular(20)),
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '${currentDateTime.day.toString() + " " + date_util.DateUtils.months[currentDateTime.month - 1]} ${currentDateTime.year}',
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        color: Colors.white),
+                  ),
+                  Text(
+                      date_util.DateUtils.weekdays[currentDateTime.weekday - 1]
+                          .toString(),
+                      style:
+                          const TextStyle(fontSize: 16, color: Colors.white)),
+                  Container(
+                    height: 90,
+                    width: double.infinity,
+                    decoration: const BoxDecoration(
+                        shape: BoxShape.rectangle,
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                            bottomRight: Radius.circular(15),
+                            bottomLeft: Radius.circular(15),
+                            topLeft: Radius.circular(8),
+                            topRight: Radius.circular(8))),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Current Period: $currentLec",style: TextStyle(fontSize: 16),)
+                        ],
+                      ),
+                    ),
+                  )
+                ],
               ),
             ),
-          )
-        ],
-      ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0,),
+                child: Text(
+                  "Features",
+                  style: Theme.of(context).textTheme.headlineMedium,
+                ),
+              ),
+            ],
+          ),
+        ),
+        GridView.builder(
+          physics: const ScrollPhysics(),
+          shrinkWrap: true,
+          padding: const EdgeInsets.symmetric(
+            horizontal: 20,
+            vertical: 8,
+          ),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            childAspectRatio: 0.8,
+            crossAxisSpacing: 20,
+            mainAxisSpacing: 24,
+          ),
+          itemBuilder: (context, index) {
+            return CategoryCard(
+              category: categoryList[index],
+            );
+          },
+          itemCount: categoryList.length,
+        ),
+      ],
     );
   }
 }

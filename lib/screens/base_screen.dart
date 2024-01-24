@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:vidyaniketan_app/screens/assign_screen.dart';
 import 'package:vidyaniketan_app/screens/home.dart';
+import 'package:vidyaniketan_app/screens/lecture_screen.dart';
 
 import '../widgets/drawer.dart';
 
@@ -16,8 +18,8 @@ class _BaseScreenState extends State<BaseScreen> {
 
   static const List<Widget> _widgetOptions = <Widget>[
     HomeScreen(),
-    HomeScreen(),
-    HomeScreen(),
+    AssignmentScreen(),
+    LectureScreen(),
     HomeScreen(),
   ];
   @override
