@@ -15,7 +15,7 @@ List<Category> categoryList = [
   ),
   Category(
     name: 'Events',
-    thumbnail: 'assets/images/lecture.png',
+    thumbnail: 'assets/images/events.png',
   ),
   Category(
     name: 'Bus Tracking',
@@ -35,6 +35,10 @@ List<Category> categoryList = [
   ),
   Category(
     name: 'Report Card',
+    thumbnail: 'assets/images/report-card.png',
+  ),
+  Category(
+    name: 'Quiz',
     thumbnail: 'assets/images/report-card.png',
   ),
 ];
