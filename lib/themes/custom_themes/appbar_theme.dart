@@ -9,7 +9,7 @@ class EAppBarTheme{
     foregroundColor: Colors.white,
     centerTitle: true,
     scrolledUnderElevation: 0,
-    backgroundColor: Colors.blue,
+    backgroundColor: Color(0xFF0f6cbd),
     surfaceTintColor: Colors.blue,
     iconTheme: IconThemeData(color: Colors.white,size: 24),
     actionsIconTheme: IconThemeData(color: Colors.white, size: 24),

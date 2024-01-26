@@ -155,14 +155,25 @@ class _LoginScreenState extends State<LoginScreen> {
           padding: ESpacingStyle.paddingWithAppBarHeight,
           child: Column(
             children: [
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Icon(
-                    Iconsax.global,
-                    size: 30,
-                    color: Color(0xFF0f6cbd),
-                  )
+                  PopupMenuButton(
+                    tooltip: "Change Language",
+                    iconSize: 30,
+                    iconColor: Color(0xFF0f6cbd),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        side: BorderSide(color: Color(0xFF0f6cbd),width: 1)
+                    ),
+                    icon: const Icon(Iconsax.global),
+                    itemBuilder: (BuildContext context) => [
+                      PopupMenuItem(child: Text("English",style: Theme.of(context).textTheme.bodyLarge,)),
+                      PopupMenuItem(child: Text("Hindi",style: Theme.of(context).textTheme.bodyLarge,)),
+                      PopupMenuItem(child: Text("Marathi",style: Theme.of(context).textTheme.bodyLarge,)),
+                    ],
+                  ),
                 ],
               ),
               Column(
@@ -192,7 +203,12 @@ class _LoginScreenState extends State<LoginScreen> {
                               labelText: "Username",
                               hintText: "Enter Username"),
                           keyboardType: TextInputType.name,
-
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Enter a valid Username';
+                            }
+                            return null;
+                          },
                         ),
                         const SizedBox(
                           height: 20,
@@ -204,6 +220,12 @@ class _LoginScreenState extends State<LoginScreen> {
                               prefixIcon: Icon(Iconsax.call),
                               labelText: "Phone Number",
                               hintText: "Enter Phone Number"),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Enter a valid Phone Number';
+                            }
+                            return null;
+                          },
                         ),
                         const SizedBox(
                           height: 20,
@@ -223,6 +245,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                 },)),
                           keyboardType: TextInputType.visiblePassword,
                           obscureText: _isObscure,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Enter a valid Password';
+                            }
+                            return null;
+                          },
                         ),
                         const SizedBox(
                           height: 10,
@@ -253,18 +281,32 @@ class _LoginScreenState extends State<LoginScreen> {
                                     return const Center(child: CircularProgressIndicator());
                                   });
 
-                                  String number = "+91${phoneController.text}";
-                                  var kk = FirebaseFirestore.instance
-                                      .collection('users').doc(number)
-                                      .get()
-                                      .then((
-                                      DocumentSnapshot documentSnapshot) {
-                                    if (documentSnapshot.exists) {
-                                      if (documentSnapshot.get('username') ==
-                                          userController.text.toString() &&
-                                          documentSnapshot.get('pass') ==
-                                              passController.text.toString()) {
-                                        sendSMS();
+                                  if(_formKey.currentState!.validate()) {
+                                    String number = "+91${phoneController
+                                        .text}";
+                                    var kk = FirebaseFirestore.instance
+                                        .collection('users').doc(number)
+                                        .get()
+                                        .then((
+                                        DocumentSnapshot documentSnapshot) {
+                                      if (documentSnapshot.exists) {
+                                        if (documentSnapshot.get('username') ==
+                                            userController.text.toString() &&
+                                            documentSnapshot.get('pass') ==
+                                                passController.text
+                                                    .toString()) {
+                                          sendSMS();
+                                        }
+                                        else {
+                                          showDialog(context: context,
+                                              builder: (context) =>
+                                              const AlertDialog(
+                                                title: Text("Error"),
+                                                content: Text(
+                                                    "Invalid Credentials"),
+                                              ));
+                                          Navigator.pop(context);
+                                        }
                                       }
                                       else {
                                         showDialog(context: context,
@@ -272,20 +314,16 @@ class _LoginScreenState extends State<LoginScreen> {
                                             const AlertDialog(
                                               title: Text("Error"),
                                               content: Text(
-                                                  "Invalid Credentials"),
+                                                  "User Doesn't Exist."),
                                             ));
+                                        Navigator.pop(context);
                                       }
                                     }
-                                    else {
-                                      showDialog(context: context,
-                                          builder: (context) =>
-                                          const AlertDialog(
-                                            title: Text("Error"),
-                                            content: Text(
-                                                "User Doesn't Exist."),
-                                          ));
-                                    }
-                                  });
+                                    );
+                                  }
+                                  else{
+                                    Navigator.pop(context);
+                                  }
                                 },
                                 child: Text(
                                   "Login",
@@ -298,83 +336,83 @@ class _LoginScreenState extends State<LoginScreen> {
 
 
                         // Tenp Button
-                        ElevatedButton(onPressed: (){
-                          showModalBottomSheet(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return SingleChildScrollView(
-                                  child: SizedBox(
-                                    height: 650,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(30.0),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                        children: [
-                                          Text("Enter the OTP ",style: TextStyle(
-                                              fontSize: 20,
-                                              fontFamily: GoogleFonts.poppins().fontFamily,
-                                          ),),
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
-                                          Pinput(
-                                            controller: otpController,
-                                            length: 6,
-                                            showCursor: true,
-                                            defaultPinTheme: PinTheme(
-                                                width: 50,
-                                                height: 60,
-                                                textStyle: TextStyle(
-                                                    fontSize: 20,
-                                                    fontFamily:
-                                                    GoogleFonts
-                                                        .poppins()
-                                                        .fontFamily,
-                                                    fontWeight:
-                                                    FontWeight.w600),
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                  BorderRadius.circular(
-                                                      10),
-                                                  border: Border.all(
-                                                      color: Color(0xFF75ade7),
-                                                      width: 2),
-                                                )),
-                                          ),
-                                          Row(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              TextButton(onPressed: (){
-
-                                              }, child: Text("Didn't Receive OTP? Resend",style: Theme.of(context).textTheme.bodyLarge,))
-                                            ],
-                                          ),
-                                          SizedBox(
-                                              height: 50,
-                                              width: double.infinity,
-                                              child: ElevatedButton(
-                                  
-                                                // OTP CHECKING
-                                                onPressed: (){
-                                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>BaseScreen()));
-                                                },
-                                                child: Text(
-                                                  "Verify",
-                                                  style: TextStyle(
-                                                      fontSize: 20,
-                                                      fontFamily: GoogleFonts
-                                                          .poppins()
-                                                          .fontFamily),
-                                                ),
-                                              ))
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                );
-                              });
-                        }, child: Text("Change Pass"))
+                        // ElevatedButton(onPressed: (){
+                        //   showModalBottomSheet(
+                        //       context: context,
+                        //       builder: (BuildContext context) {
+                        //         return SingleChildScrollView(
+                        //           child: SizedBox(
+                        //             height: 650,
+                        //             child: Padding(
+                        //               padding: const EdgeInsets.all(30.0),
+                        //               child: Column(
+                        //                 crossAxisAlignment:
+                        //                 CrossAxisAlignment.center,
+                        //                 children: [
+                        //                   Text("Enter the OTP ",style: TextStyle(
+                        //                       fontSize: 20,
+                        //                       fontFamily: GoogleFonts.poppins().fontFamily,
+                        //                   ),),
+                        //                   const SizedBox(
+                        //                     height: 10,
+                        //                   ),
+                        //                   Pinput(
+                        //                     controller: otpController,
+                        //                     length: 6,
+                        //                     showCursor: true,
+                        //                     defaultPinTheme: PinTheme(
+                        //                         width: 50,
+                        //                         height: 60,
+                        //                         textStyle: TextStyle(
+                        //                             fontSize: 20,
+                        //                             fontFamily:
+                        //                             GoogleFonts
+                        //                                 .poppins()
+                        //                                 .fontFamily,
+                        //                             fontWeight:
+                        //                             FontWeight.w600),
+                        //                         decoration: BoxDecoration(
+                        //                           borderRadius:
+                        //                           BorderRadius.circular(
+                        //                               10),
+                        //                           border: Border.all(
+                        //                               color: Color(0xFF75ade7),
+                        //                               width: 2),
+                        //                         )),
+                        //                   ),
+                        //                   Row(
+                        //                     mainAxisAlignment: MainAxisAlignment.center,
+                        //                     children: [
+                        //                       TextButton(onPressed: (){
+                        //
+                        //                       }, child: Text("Didn't Receive OTP? Resend",style: Theme.of(context).textTheme.bodyLarge,))
+                        //                     ],
+                        //                   ),
+                        //                   SizedBox(
+                        //                       height: 50,
+                        //                       width: double.infinity,
+                        //                       child: ElevatedButton(
+                        //
+                        //                         // OTP CHECKING
+                        //                         onPressed: (){
+                        //                           Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>BaseScreen()));
+                        //                         },
+                        //                         child: Text(
+                        //                           "Verify",
+                        //                           style: TextStyle(
+                        //                               fontSize: 20,
+                        //                               fontFamily: GoogleFonts
+                        //                                   .poppins()
+                        //                                   .fontFamily),
+                        //                         ),
+                        //                       ))
+                        //                 ],
+                        //               ),
+                        //             ),
+                        //           ),
+                        //         );
+                        //       });
+                        // }, child: Text("Change Pass"))
                       ],
                     ),
                   ))

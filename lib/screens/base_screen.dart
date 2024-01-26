@@ -3,6 +3,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:vidyaniketan_app/screens/assign_screen.dart';
 import 'package:vidyaniketan_app/screens/home.dart';
 import 'package:vidyaniketan_app/screens/lecture_screen.dart';
+import 'package:vidyaniketan_app/screens/profile.dart';
 
 import '../widgets/drawer.dart';
 
@@ -14,13 +15,21 @@ class BaseScreen extends StatefulWidget {
 }
 
 class _BaseScreenState extends State<BaseScreen> {
+  var items = [
+    'Item 1',
+    'Item 2',
+    'Item 3',
+    'Item 4',
+    'Item 5',
+  ];
+
   int _selectedIndex = 0;
 
   static const List<Widget> _widgetOptions = <Widget>[
     HomeScreen(),
     AssignmentScreen(),
     LectureScreen(),
-    HomeScreen(),
+    ProfileScreen(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -32,6 +41,22 @@ class _BaseScreenState extends State<BaseScreen> {
               fontSize: 24,fontWeight: FontWeight.w600,color: Colors.white
           ),
         ),
+
+          actions: <Widget>[
+            PopupMenuButton(
+              color: Color(0xFFe4f1ff),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+                side: BorderSide(color: Color(0xFF0f6cbd),width: 1)
+              ),
+              icon: const Icon(Iconsax.global),
+              itemBuilder: (BuildContext context) => [
+                PopupMenuItem(child: Text("English",style: Theme.of(context).textTheme.bodyLarge,)),
+                PopupMenuItem(child: Text("Hindi",style: Theme.of(context).textTheme.bodyLarge,)),
+                PopupMenuItem(child: Text("Marathi",style: Theme.of(context).textTheme.bodyLarge,)),
+              ],
+            ),
+          ]
       ),
       drawer: MyDrawer(),
       body: Center(

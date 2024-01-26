@@ -7,6 +7,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:vidyaniketan_app/screens/login.dart';
 import 'package:vidyaniketan_app/utils/date.dart' as date_util;
+import 'package:vidyaniketan_app/widgets/days.dart';
+import 'package:vidyaniketan_app/widgets/days_list.dart';
 
 import '../utils/search_text_field.dart';
 import '../widgets/cat_lis.dart';
@@ -102,18 +104,26 @@ class _BodyState extends State<Body> {
           ),
         ),
 
-        Padding(
+        const Padding(
           padding: EdgeInsets.symmetric(horizontal: 20),
           child: Divider(thickness: 1,color: Color(0xFF75ade7),),
         ),
         Padding(
           padding: const EdgeInsets.only(top: 2, left: 20, right: 20),
           child: Container(
-            height: 151,
+            height: 152,
             width: double.infinity,
             decoration: BoxDecoration(
                 shape: BoxShape.rectangle,
-                color: Colors.blue,
+                color: Color(0xFFe4f1ff),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(.1),
+                    blurRadius: 4.0,
+                    spreadRadius: .05,
+                  ), //BoxShadow
+                ],
+                border: Border.all(width: 1.5,color: Color(0xFF0f6cbd)),
                 borderRadius: BorderRadius.circular(20)),
             child: Padding(
               padding: const EdgeInsets.all(10.0),
@@ -121,19 +131,17 @@ class _BodyState extends State<Body> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '${currentDateTime.day.toString() + " " + date_util.DateUtils.months[currentDateTime.month - 1]} ${currentDateTime.year}',
+                    '${"${currentDateTime.day} " + date_util.DateUtils.months[currentDateTime.month - 1]} ${currentDateTime.year}',
                     style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
-                        color: Colors.white),
+                        color: Colors.black),
                   ),
-                  Text(
-                      date_util.DateUtils.weekdays[currentDateTime.weekday - 1]
-                          .toString(),
-                      style:
-                          const TextStyle(fontSize: 16, color: Colors.white)),
+                  SizedBox(
+                    height: 10,
+                  ),
                   Container(
-                    height: 90,
+                    height: 97,
                     width: double.infinity,
                     decoration: const BoxDecoration(
                         shape: BoxShape.rectangle,
@@ -148,7 +156,27 @@ class _BodyState extends State<Body> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Current Period: $currentLec",style: TextStyle(fontSize: 16),)
+                          Text("Current Period: $currentLec",style: TextStyle(fontSize: 16),),
+                          GridView.builder(
+                            physics: const ScrollPhysics(),
+                            shrinkWrap: true,
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 10,
+                              vertical: 5,
+                            ),
+                            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 5,
+                              childAspectRatio: 1,
+                              crossAxisSpacing: 10,
+                              mainAxisSpacing: 30,
+                            ),
+                            itemBuilder: (context, index) {
+                              return DaysCard(
+                                days: daysList[index],
+                              );
+                            },
+                            itemCount: daysList.length,
+                          ),
                         ],
                       ),
                     ),
@@ -216,7 +244,7 @@ class MyAppBar extends StatelessWidget {
           bottomLeft: Radius.circular(20),
           bottomRight: Radius.circular(20),
         ),
-        color: Colors.blue,
+        color: Color(0xFF0f6cbd),
       ),
       child: Column(
         children: [
@@ -232,16 +260,6 @@ class MyAppBar extends StatelessWidget {
                     fontSize: 20,
                     fontWeight: FontWeight.bold),
               ),
-              // IconButton(
-              //     onPressed: () {
-              //       // MyDrawer();
-              //       // Scaffold.of(context).openDrawer();
-              //     },
-              //     icon: Icon(
-              //       Icons.list_outlined,
-              //       color: Colors.white,
-              //       size: 34.0,
-              //     ))
             ],
           ),
           const SizedBox(
