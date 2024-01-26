@@ -1,11 +1,9 @@
 class Category {
   String thumbnail;
   String name;
-  int noOfCourses;
 
   Category({
     required this.name,
-    required this.noOfCourses,
     required this.thumbnail,
   });
 }
@@ -13,22 +11,30 @@ class Category {
 List<Category> categoryList = [
   Category(
     name: 'Assignments',
-    noOfCourses: 55,
-    thumbnail: 'assets/images/Assignment.png',
+    thumbnail: 'assets/images/assignment.png',
   ),
   Category(
-    name: 'Lectures',
-    noOfCourses: 20,
+    name: 'Events',
     thumbnail: 'assets/images/lecture.png',
   ),
   Category(
     name: 'Bus Tracking',
-    noOfCourses: 16,
-    thumbnail: 'assets/images/navi.png',
+    thumbnail: 'assets/images/bt.png',
   ),
   Category(
-    name: 'Analysis',
-    noOfCourses: 25,
+    name: 'Attendance',
     thumbnail: 'assets/images/growth.png',
+  ),
+  Category(
+    name: 'Timetable',
+    thumbnail: 'assets/images/timetable.png',
+  ),
+  Category(
+    name: 'Certificates',
+    thumbnail: 'assets/images/certificates.png',
+  ),
+  Category(
+    name: 'Report Card',
+    thumbnail: 'assets/images/timetable.png',
   ),
 ];

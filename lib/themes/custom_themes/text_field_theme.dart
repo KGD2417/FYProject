@@ -5,8 +5,8 @@ class ETextFieldTheme{
 
   static InputDecorationTheme lightInputDecorationTheme = InputDecorationTheme(
     errorMaxLines: 3,
-    prefixIconColor: Colors.grey,
-    suffixIconColor: Colors.grey,
+    prefixIconColor: const Color(0xFF75ade7),
+    suffixIconColor: const Color(0xFF75ade7),
 
     labelStyle: const TextStyle().copyWith(fontSize: 14, color: Colors.black),
     hintStyle: const TextStyle().copyWith(fontSize: 14, color: Colors.black),
@@ -16,12 +16,12 @@ class ETextFieldTheme{
 
     border: const OutlineInputBorder().copyWith(
         borderRadius: BorderRadius.circular(14),
-        borderSide: const BorderSide(width: 1,color: Colors.grey)
+        borderSide: const BorderSide(width: 1,color: Color(0xFF75ade7))
     ),
 
     enabledBorder: const OutlineInputBorder().copyWith(
         borderRadius: BorderRadius.circular(14),
-        borderSide: const BorderSide(width: 1,color: Colors.grey)
+        borderSide: const BorderSide(width: 1,color: Color(0xFF75ade7))
     ),
 
     focusedBorder: const OutlineInputBorder().copyWith(
@@ -44,8 +44,8 @@ class ETextFieldTheme{
 
   static InputDecorationTheme darkInputDecorationTheme = InputDecorationTheme(
     errorMaxLines: 3,
-    prefixIconColor: Colors.grey,
-    suffixIconColor: Colors.grey,
+    prefixIconColor: const Color(0xFF75ade7),
+    suffixIconColor: const Color(0xFF75ade7),
 
     labelStyle: const TextStyle().copyWith(fontSize: 14, color: Colors.white),
     hintStyle: const TextStyle().copyWith(fontSize: 14, color: Colors.white),
@@ -55,12 +55,12 @@ class ETextFieldTheme{
 
     border: const OutlineInputBorder().copyWith(
         borderRadius: BorderRadius.circular(14),
-        borderSide: const BorderSide(width: 1,color: Colors.grey)
+        borderSide: const BorderSide(width: 1,color: Color(0xFF75ade7))
     ),
 
     enabledBorder: const OutlineInputBorder().copyWith(
         borderRadius: BorderRadius.circular(14),
-        borderSide: const BorderSide(width: 1,color: Colors.grey)
+        borderSide: const BorderSide(width: 1,color: Color(0xFF75ade7))
     ),
 
     focusedBorder: const OutlineInputBorder().copyWith(

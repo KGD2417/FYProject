@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
 
 import '../screens/login.dart';
 
@@ -14,7 +15,12 @@ class MyDrawer extends StatelessWidget {
       child: Column(
         children: [
           //Drawer Header
-          const DrawerHeader(child: Icon(Icons.add_chart)),
+          DrawerHeader(child: Column(
+            children: [
+              Image.asset("assets/images/profile.png",height: 110),
+              Text("Kshitij Desai",style: Theme.of(context).textTheme.headlineSmall,),
+            ],
+          )),
 
           //Home Tile
           ListTile(

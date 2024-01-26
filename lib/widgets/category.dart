@@ -9,14 +9,16 @@ class CategoryCard extends StatelessWidget {
     required this.category,
   }) : super(key: key);
 
+
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {},
       child: Container(
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 5),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: const Color(0xFFe4f1ff),
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
@@ -27,23 +29,20 @@ class CategoryCard extends StatelessWidget {
           ],
         ),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Align(
-              alignment: Alignment.topRight,
+              alignment: Alignment.center,
               child: Image.asset(
                 category.thumbnail,
-                height: 120,
+                height: 50,
               ),
             ),
             const SizedBox(
-              height: 10,
+              height: 15,
             ),
-            Text(category.name),
-            Text(
-              "${category.noOfCourses.toString()} courses",
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
+            Text(category.name,style: Theme.of(context).textTheme.bodyLarge,),
           ],
         ),
       ),

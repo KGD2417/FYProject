@@ -44,7 +44,7 @@ class _BaseScreenState extends State<BaseScreen> {
           elevation: 0,
           items: [
             BottomNavigationBarItem(
-              activeIcon: Icon(Icons.home_filled,size: kBottomNavigationBarItemSize),
+              activeIcon: Icon(Icons.home,size: kBottomNavigationBarItemSize),
               icon: Icon(Icons.home_outlined,size: kBottomNavigationBarItemSize),
               label: "Home",
             ),

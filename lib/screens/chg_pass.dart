@@ -5,6 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:vidyaniketan_app/screens/home.dart';
 
+import 'base_screen.dart';
+
 class ChangePassScreen extends StatefulWidget {
   const ChangePassScreen({super.key});
 
@@ -23,10 +25,11 @@ class _ChangePassScreenState extends State<ChangePassScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: Color(0xFFe4f1ff),
           title: Text(
             "Change Password",
             style: TextStyle(
-                fontSize: 24, fontWeight: FontWeight.w600, color: Colors.white),
+                fontSize: 24, fontWeight: FontWeight.w600, color: Colors.black),
           ),
         ),
         body: SingleChildScrollView(
@@ -133,17 +136,34 @@ class _ChangePassScreenState extends State<ChangePassScreen> {
     print(user!.phoneNumber);
     CollectionReference usersRef =
         FirebaseFirestore.instance.collection('users');
-    usersRef.doc(user.phoneNumber).update(
-        {'pass': passController.text.toString(), 'passCheck': 1}).then((value) {
-          Navigator.of(context).pop();
+
+    String password1 = "";
+    usersRef.doc(user.phoneNumber).get().then((DocumentSnapshot snapshot){
+      password1 = snapshot.get('pass');
+    });
+
+    if(password1 == passController.text.toString()){
+      Navigator.pop(context);
       showDialog(
           context: context,
           builder: (context) => const AlertDialog(
-                title: Text("Changed"),
-                content: Text("Password Changed"),
-              ));
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => HomeScreen()));
-    });
+            title: Text("Not Changed"),
+            content: Text("This password that you have entered is the same as before"),
+          ));
+    }
+    else{
+      usersRef.doc(user.phoneNumber).update(
+          {'pass': passController.text.toString(), 'passCheck': 1}).then((value) {
+        Navigator.of(context).pop();
+        showDialog(
+            context: context,
+            builder: (context) => const AlertDialog(
+              title: Text("Changed"),
+              content: Text("Password Changed"),
+            ));
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => BaseScreen()));
+      });
+    }
   }
 }

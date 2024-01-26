@@ -47,7 +47,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       crossAxisAlignment:
                       CrossAxisAlignment.center,
                       children: [
-                        const Text("Enter the OTP "),
+                        Text("Enter the OTP ",style: TextStyle(
+                          fontSize: 20,
+                          fontFamily: GoogleFonts.poppins().fontFamily,
+                        ),),
                         const SizedBox(
                           height: 10,
                         ),
@@ -71,12 +74,17 @@ class _LoginScreenState extends State<LoginScreen> {
                                 BorderRadius.circular(
                                     10),
                                 border: Border.all(
-                                    color: Colors.grey,
+                                    color: Color(0xFF75ade7),
                                     width: 2),
                               )),
                         ),
-                        const SizedBox(
-                          height: 20,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            TextButton(onPressed: (){
+
+                            }, child: Text("Didn't Receive OTP? Resend",style: Theme.of(context).textTheme.bodyLarge,))
+                          ],
                         ),
                         SizedBox(
                             height: 50,
@@ -153,6 +161,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Icon(
                     Iconsax.global,
                     size: 30,
+                    color: Color(0xFF0f6cbd),
                   )
                 ],
               ),
@@ -289,9 +298,83 @@ class _LoginScreenState extends State<LoginScreen> {
 
 
                         // Tenp Button
-    //ElevatedButton(onPressed: (){
-    //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>BaseScreen()));
-                        //}, child: Text("Change Pass"))
+                        ElevatedButton(onPressed: (){
+                          showModalBottomSheet(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return SingleChildScrollView(
+                                  child: SizedBox(
+                                    height: 650,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(30.0),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                        children: [
+                                          Text("Enter the OTP ",style: TextStyle(
+                                              fontSize: 20,
+                                              fontFamily: GoogleFonts.poppins().fontFamily,
+                                          ),),
+                                          const SizedBox(
+                                            height: 10,
+                                          ),
+                                          Pinput(
+                                            controller: otpController,
+                                            length: 6,
+                                            showCursor: true,
+                                            defaultPinTheme: PinTheme(
+                                                width: 50,
+                                                height: 60,
+                                                textStyle: TextStyle(
+                                                    fontSize: 20,
+                                                    fontFamily:
+                                                    GoogleFonts
+                                                        .poppins()
+                                                        .fontFamily,
+                                                    fontWeight:
+                                                    FontWeight.w600),
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                  BorderRadius.circular(
+                                                      10),
+                                                  border: Border.all(
+                                                      color: Color(0xFF75ade7),
+                                                      width: 2),
+                                                )),
+                                          ),
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              TextButton(onPressed: (){
+
+                                              }, child: Text("Didn't Receive OTP? Resend",style: Theme.of(context).textTheme.bodyLarge,))
+                                            ],
+                                          ),
+                                          SizedBox(
+                                              height: 50,
+                                              width: double.infinity,
+                                              child: ElevatedButton(
+                                  
+                                                // OTP CHECKING
+                                                onPressed: (){
+                                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>BaseScreen()));
+                                                },
+                                                child: Text(
+                                                  "Verify",
+                                                  style: TextStyle(
+                                                      fontSize: 20,
+                                                      fontFamily: GoogleFonts
+                                                          .poppins()
+                                                          .fontFamily),
+                                                ),
+                                              ))
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              });
+                        }, child: Text("Change Pass"))
                       ],
                     ),
                   ))

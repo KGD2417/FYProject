@@ -64,15 +64,22 @@ class _BodyState extends State<Body> {
     currentMonthList = currentMonthList.toSet().toList();
     scrollController =
         ScrollController(initialScrollOffset: 70.0 * currentDateTime.day);
-    super.initState();
+
 
     FirebaseFirestore.instance.collection('timetable').doc(date_util.DateUtils.weekdays[currentDateTime.weekday - 1]
         .toString()).get().then((DocumentSnapshot docSnap){
           DateTime time = DateTime.now();
           int bruh= (time.hour)+1;
           print("${time.hour}to$bruh");
-          currentLec = docSnap.get("${time.hour}to$bruh");
+
+          setState(() {
+            currentLec = docSnap.get("${time.hour}to$bruh");
+          });
+
     });
+
+
+    super.initState();
   }
 
   @override
@@ -94,10 +101,15 @@ class _BodyState extends State<Body> {
             ],
           ),
         ),
+
         Padding(
-          padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          child: Divider(thickness: 1,color: Color(0xFF75ade7),),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 2, left: 20, right: 20),
           child: Container(
-            height: 150,
+            height: 151,
             width: double.infinity,
             decoration: BoxDecoration(
                 shape: BoxShape.rectangle,
@@ -161,6 +173,10 @@ class _BodyState extends State<Body> {
             ],
           ),
         ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          child: Divider(thickness: 1,color: Color(0xFF75ade7),),
+        ),
         GridView.builder(
           physics: const ScrollPhysics(),
           shrinkWrap: true,
@@ -169,10 +185,10 @@ class _BodyState extends State<Body> {
             vertical: 8,
           ),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
+            crossAxisCount: 3,
             childAspectRatio: 0.8,
             crossAxisSpacing: 20,
-            mainAxisSpacing: 24,
+            mainAxisSpacing: 20,
           ),
           itemBuilder: (context, index) {
             return CategoryCard(
