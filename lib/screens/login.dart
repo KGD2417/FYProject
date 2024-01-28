@@ -11,6 +11,8 @@ import 'package:vidyaniketan_app/screens/home.dart';
 import '../utils/spacing_styles.dart';
 import 'base_screen.dart';
 import 'chg_pass.dart';
+import 'driver_screen.dart';
+import 'teacher_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -111,16 +113,52 @@ class _LoginScreenState extends State<LoginScreen> {
                                         DocumentSnapshot documentSnapshots) {
                                           Navigator.of(context).pop();
                                           Navigator.of(context).pop();
-                                          if (documentSnapshots.get('passCheck')==0){
-                                            Navigator.pushReplacement(context,
-                                                MaterialPageRoute(builder: (
-                                                  context) => const ChangePassScreen()));
-                                      }
-                                      else{
-                                        Navigator.pushReplacement(context,
-                                            MaterialPageRoute(builder: (
-                                                context) => const BaseScreen()));
-                                      }
+
+                                          if(documentSnapshots.get('role')=="stud"){
+
+                                            if (documentSnapshots.get('passCheck')==0){
+                                              Navigator.pushReplacement(context,
+                                                  MaterialPageRoute(builder: (
+                                                      context) => const ChangePassScreen()));
+                                            }
+                                            else{
+                                              Navigator.pushReplacement(context,
+                                                  MaterialPageRoute(builder: (
+                                                      context) => const BaseScreen()));
+                                            }
+
+
+                                          }
+                                          else if(documentSnapshots.get('role')=="driver"){
+
+                                            if (documentSnapshots.get('passCheck')==0){
+                                              Navigator.pushReplacement(context,
+                                                  MaterialPageRoute(builder: (
+                                                      context) => const ChangePassScreen()));
+                                            }
+                                            else{
+                                              Navigator.pushReplacement(context,
+                                                  MaterialPageRoute(builder: (
+                                                      context) => const DriverScreen()));
+                                            }
+
+
+                                          }
+                                          else if(documentSnapshots.get('role')=="teacher"){
+
+                                            if (documentSnapshots.get('passCheck')==0){
+                                              Navigator.pushReplacement(context,
+                                                  MaterialPageRoute(builder: (
+                                                      context) => const ChangePassScreen()));
+                                            }
+                                            else{
+                                              Navigator.pushReplacement(context,
+                                                  MaterialPageRoute(builder: (
+                                                      context) => const TeachScreen()));
+                                            }
+
+                                          }
+
                                     });
                                   });
                                 }
