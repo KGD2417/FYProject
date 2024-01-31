@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'attendance_screen.dart';
+
 class TeachScreen extends StatefulWidget {
   const TeachScreen({super.key});
 
@@ -10,8 +12,13 @@ class TeachScreen extends StatefulWidget {
 class _TeachScreenState extends State<TeachScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Text("Hello Teacher"),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Teacher Screen"),
+      ),
+      body: Center(child: ElevatedButton(onPressed: (){
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>AttendanceScreen()));
+      }, child: Text("Open Attendance"))),
     );
   }
 }
