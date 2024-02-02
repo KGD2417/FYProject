@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:pinput/pinput.dart';
 import 'package:vidyaniketan_app/screens/home.dart';
+import 'package:vidyaniketan_app/utils/checkuser.dart';
 
 import '../utils/spacing_styles.dart';
 import 'base_screen.dart';
@@ -22,6 +23,13 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+
+  @override
+  void initState() {
+    CheckUser().isLogin(context);
+    super.initState();
+  }
+
   TextEditingController phoneController = TextEditingController();
   TextEditingController otpController = TextEditingController();
   TextEditingController userController = TextEditingController();
@@ -30,6 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
 
   bool _isObscure = true;
+
 
 
   sendSMS() async {

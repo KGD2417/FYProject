@@ -4,8 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:iconsax/iconsax.dart';
-import 'package:vidyaniketan_app/screens/login.dart';
+import 'package:intl/intl.dart';
 import 'package:vidyaniketan_app/utils/date.dart' as date_util;
 import 'package:vidyaniketan_app/widgets/days.dart';
 import 'package:vidyaniketan_app/widgets/days_list.dart';
@@ -13,7 +12,6 @@ import 'package:vidyaniketan_app/widgets/days_list.dart';
 import '../utils/search_text_field.dart';
 import '../widgets/cat_lis.dart';
 import '../widgets/category.dart';
-import '../widgets/drawer.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -59,6 +57,10 @@ class _BodyState extends State<Body> {
 
   String currentLec = "";
 
+  final auth = FirebaseAuth.instance;
+  String studName = "";
+
+
   @override
   void initState() {
     currentMonthList = date_util.DateUtils.daysInMonth(currentDateTime);
@@ -66,6 +68,14 @@ class _BodyState extends State<Body> {
     currentMonthList = currentMonthList.toSet().toList();
     scrollController =
         ScrollController(initialScrollOffset: 70.0 * currentDateTime.day);
+
+    CollectionReference usersRef = FirebaseFirestore.instance.collection('users');
+    final user = auth.currentUser;
+    usersRef.doc(user?.phoneNumber.toString()).get().then((DocumentSnapshot snapshot){
+      setState(() {
+        studName = snapshot.get('username');
+      });
+    });
 
 
     FirebaseFirestore.instance.collection('timetable').doc(date_util.DateUtils.weekdays[currentDateTime.weekday - 1]
@@ -230,8 +240,32 @@ class _BodyState extends State<Body> {
   }
 }
 
-class MyAppBar extends StatelessWidget {
+class MyAppBar extends StatefulWidget {
   const MyAppBar({super.key});
+
+  @override
+  State<MyAppBar> createState() => _MyAppBarState();
+}
+
+class _MyAppBarState extends State<MyAppBar> {
+
+
+  final auth = FirebaseAuth.instance;
+  String studName = "";
+
+  @override
+  void initState() {
+    super.initState();
+
+    CollectionReference usersRef = FirebaseFirestore.instance.collection('users');
+    final user = auth.currentUser;
+    usersRef.doc(user?.phoneNumber.toString()).get().then((DocumentSnapshot snapshot){
+      setState(() {
+        studName = snapshot.get('username');
+      });
+    });
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -253,7 +287,7 @@ class MyAppBar extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Welcome,\nKshitij Desai",
+                "Welcome,\n"+studName,
                 style: TextStyle(
                     color: Colors.white,
                     fontFamily: GoogleFonts.poppins().fontFamily,

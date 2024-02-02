@@ -27,9 +27,9 @@ class _DaysCardState extends State<DaysCard> {
     return GestureDetector(
       onTap: () {},
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 5),
+        padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 5),  
         decoration: BoxDecoration(
-          color: const Color(0xFFe4f1ff),
+          color: widget.days.currentDay?Color(0xFF0f6cbd): Color(0xFFe4f1ff),
           borderRadius: BorderRadius.circular(15),
           border: Border.all(width: 1,color: Color(0xFF0f6cbd)),
           boxShadow: [
