@@ -46,6 +46,7 @@ dependencies:
   location: ^5.0.3
   flutter_polyline_points: ^2.0.0
   percent_indicator: ^4.2.3
+  flutter_svg: ^2.0.9
 
 dev_dependencies:
   flutter_test:

@@ -121,7 +121,7 @@ class _BodyState extends State<Body> {
         Padding(
           padding: const EdgeInsets.only(top: 2, left: 20, right: 20),
           child: Container(
-            height: 152,
+            height: (DateFormat('EEE').format(DateTime.now()) == "Sat" || DateFormat('EEE').format(DateTime.now()) == "Sun")?125:152,
             width: double.infinity,
             decoration: BoxDecoration(
                 shape: BoxShape.rectangle,
@@ -151,7 +151,7 @@ class _BodyState extends State<Body> {
                     height: 10,
                   ),
                   Container(
-                    height: 97,
+                    height: (DateFormat('EEE').format(DateTime.now()) == "Sat" || DateFormat('EEE').format(DateTime.now()) == "Sun")?70:97,
                     width: double.infinity,
                     decoration: const BoxDecoration(
                         shape: BoxShape.rectangle,
@@ -163,7 +163,10 @@ class _BodyState extends State<Body> {
                             topRight: Radius.circular(8))),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Column(
+                      child: (DateFormat('EEE').format(DateTime.now()) == "Sat" || DateFormat('EEE').format(DateTime.now()) == "Sun")?
+                          Center(
+                              child:Text("Holiday",style: Theme.of(context).textTheme.headlineLarge,)):
+                      Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text("Current Period: $currentLec",style: TextStyle(fontSize: 16),),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vidyaniketan_app/screens/bus_list.dart';
 import 'package:vidyaniketan_app/screens/stud_att_screen.dart';
 
 import 'cat_lis.dart';
@@ -27,9 +28,7 @@ class CategoryCard extends StatelessWidget {
           ));
         }
         else if(category.name=="Bus Tracking"){
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            content: Text("Bus Tracking"),
-          ));
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>BusListScreen()));
         }
         else if(category.name=="Attendance"){
           Navigator.push(context,MaterialPageRoute(builder: (context)=>StudentAttendanceScreen()));

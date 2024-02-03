@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:vidyaniketan_app/screens/home.dart';
+import 'package:vidyaniketan_app/screens/teacher_screen.dart';
 
 import 'base_screen.dart';
+import 'driver_screen.dart';
 
 class ChangePassScreen extends StatefulWidget {
   const ChangePassScreen({super.key});
@@ -140,6 +142,9 @@ class _ChangePassScreenState extends State<ChangePassScreen> {
     String password1 = "";
     usersRef.doc(user.phoneNumber).get().then((DocumentSnapshot snapshot){
       password1 = snapshot.get('pass');
+      setState(() {
+
+      });
     });
 
     if(password1 == passController.text.toString()){
@@ -161,8 +166,36 @@ class _ChangePassScreenState extends State<ChangePassScreen> {
               title: Text("Changed"),
               content: Text("Password Changed"),
             ));
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => BaseScreen()));
+        User? user = FirebaseAuth.instance
+            .currentUser;
+        var count = FirebaseFirestore.instance
+            .collection('users').doc(
+            user!.phoneNumber).get().then((
+            DocumentSnapshot documentSnapshots) {
+          Navigator.of(context).pop();
+          Navigator.of(context).pop();
+
+          if(documentSnapshots.get('role')=="stud"){
+
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (
+                      context) => const BaseScreen()));
+
+          }
+          else if(documentSnapshots.get('role')=="driver"){
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (
+                      context) => const DriverScreen()));
+
+          }
+          else if(documentSnapshots.get('role')=="teacher"){
+
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (
+                      context) => const TeachScreen()));
+          }
+
+        });
       });
     }
   }

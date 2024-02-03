@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vidyaniketan_app/screens/driver_screen.dart';
+import 'package:vidyaniketan_app/screens/bus_screen.dart';
 import 'package:vidyaniketan_app/screens/login.dart';
 import 'package:vidyaniketan_app/themes/theme.dart';
 import 'package:vidyaniketan_app/utils/checkuser.dart';

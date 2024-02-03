@@ -6,13 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:pinput/pinput.dart';
+import 'package:vidyaniketan_app/screens/driver_screen.dart';
 import 'package:vidyaniketan_app/screens/home.dart';
 import 'package:vidyaniketan_app/utils/checkuser.dart';
 
 import '../utils/spacing_styles.dart';
 import 'base_screen.dart';
 import 'chg_pass.dart';
-import 'driver_screen.dart';
+import 'bus_screen.dart';
 import 'teacher_screen.dart';
 
 class LoginScreen extends StatefulWidget {

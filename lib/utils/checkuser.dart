@@ -2,11 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:vidyaniketan_app/screens/base_screen.dart';
+import 'package:vidyaniketan_app/screens/bus_screen.dart';
 import 'package:vidyaniketan_app/screens/driver_screen.dart';
 import 'package:vidyaniketan_app/screens/login.dart';
 import 'package:vidyaniketan_app/screens/teacher_screen.dart';
-
-import '../constants/api_key.dart';
 
 
 class CheckUser{
