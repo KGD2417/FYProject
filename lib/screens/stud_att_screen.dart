@@ -53,8 +53,6 @@ class _StudentAttendanceScreenState extends State<StudentAttendanceScreen> {
     print(roll);
     CollectionReference divRef = FirebaseFirestore.instance.collection('class${classs}Att');
     divRef.doc('${"${fullDate.day} " + date_util.DateUtils.months[fullDate.month - 1]} ${fullDate.year}').get().then((DocumentSnapshot documentsnapshot){
-
-
       setState(() {
         present1 = documentsnapshot.get(roll);
       });
@@ -88,9 +86,12 @@ class _StudentAttendanceScreenState extends State<StudentAttendanceScreen> {
 
     setState(() {
       percentage = (attLen/fullLen) * 100;
-      abPerc = 100 - percentage!;
-      presPerc = "$percentage%";
-      absePerc = "$abPerc%";
+      abPerc = 100 - percentage;
+      presPerc = percentage.toStringAsFixed(2);
+      absePerc= abPerc.toStringAsFixed(2);
+
+      // presPerc = "$percentage%";
+      // absePerc = "$abPerc%";
       if(present!="P"){
         present1 = "Absent";
       }

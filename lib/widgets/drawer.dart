@@ -1,19 +1,22 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:vidyaniketan_app/screens/assign_screen.dart';
 
+import '../screens/base_screen.dart';
 import '../screens/login.dart';
 
 
-class MyDrawer extends StatefulWidget {
-  const MyDrawer({super.key});
+class AltDrawer extends StatefulWidget {
+  const AltDrawer({super.key});
 
 
   @override
-  State<MyDrawer> createState() => _MyDrawerState();
+  State<AltDrawer> createState() => _AltDrawerState();
 }
 
-class _MyDrawerState extends State<MyDrawer> {
+class _AltDrawerState extends State<AltDrawer> {
+
 
 
   @override
@@ -22,9 +25,9 @@ class _MyDrawerState extends State<MyDrawer> {
       backgroundColor: Color(0xFFe4f1ff),
       shadowColor: Colors.blue,
       shape: const RoundedRectangleBorder(
-    borderRadius: BorderRadius.only(topRight: Radius.circular(20),bottomRight: Radius.circular(20)),
-    side: BorderSide(
-    color: Color(0xFF0f6cbd), style: BorderStyle.solid, width: 2),),
+        borderRadius: BorderRadius.only(topRight: Radius.circular(20),bottomRight: Radius.circular(20)),
+        side: BorderSide(
+            color: Color(0xFF0f6cbd), style: BorderStyle.solid, width: 2),),
       child: SingleChildScrollView(
         child: Column(
           children: [
@@ -35,11 +38,11 @@ class _MyDrawerState extends State<MyDrawer> {
               color: Colors.blue,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset("assets/images/profile.png",height: 110),
-                Text("Kshitij Desai",style: Theme.of(context).textTheme.headlineSmall,),
-              ],
-            ),
+                children: [
+                  Image.asset("assets/images/profile.png",height: 110),
+                  Text("Kshitij Desai",style: Theme.of(context).textTheme.headlineSmall,),
+                ],
+              ),
             ),
             //Home Tile
             ListTile(
@@ -105,20 +108,6 @@ class _MyDrawerState extends State<MyDrawer> {
             Divider(
               thickness: 1,
             ),
-
-            //Certificates
-            ListTile(
-              leading: const Icon(Icons.workspace_premium),
-              title: const Text("Certificates"),
-              onTap: (){
-                Navigator.pop(context);
-              },
-            ),
-
-            Divider(
-              thickness: 1,
-            ),
-
             //Report Card
             ListTile(
               leading: const Icon(Icons.description),

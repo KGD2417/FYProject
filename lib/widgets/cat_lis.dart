@@ -26,10 +26,6 @@ List<Category> categoryList = [
     thumbnail: 'assets/images/attendance.png',
   ),
   Category(
-    name: 'Certificates',
-    thumbnail: 'assets/images/certificates.png',
-  ),
-  Category(
     name: 'Report Card',
     thumbnail: 'assets/images/report-card.png',
   ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:vidyaniketan_app/widgets/days_list.dart';
 
+import '../screens/timetable_screen.dart';
+
 class DaysCard extends StatefulWidget {
   final DaysList days;
   const DaysCard({
@@ -25,7 +27,9 @@ class _DaysCardState extends State<DaysCard> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>TimeTableScreen()));
+      },
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 5),  
         decoration: BoxDecoration(
@@ -44,7 +48,10 @@ class _DaysCardState extends State<DaysCard> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(widget.days.name,style: Theme.of(context).textTheme.headlineSmall,),
+            Text(widget.days.name,style: TextStyle(
+              color: widget.days.currentDay? Colors.white:Colors.black,
+              fontWeight: FontWeight.bold
+            ),),
           ],
         ),
       ),

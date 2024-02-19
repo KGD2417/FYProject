@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vidyaniketan_app/screens/bus_list.dart';
 import 'package:vidyaniketan_app/screens/stud_att_screen.dart';
-
 import 'cat_lis.dart';
 
 class CategoryCard extends StatelessWidget {
@@ -19,35 +18,30 @@ class CategoryCard extends StatelessWidget {
       onTap: () {
         if(category.name=="Assignments"){
           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            content: Text("Assignments"),
+            content: Text("Assignments"),//
           ));
         }
         else if(category.name=="Events"){
           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            content: Text("Events"),
+            content: Text("Events"),//d
           ));
         }
         else if(category.name=="Bus Tracking"){
           Navigator.push(context, MaterialPageRoute(builder: (context)=>BusListScreen()));
-        }
+        }//b
         else if(category.name=="Attendance"){
           Navigator.push(context,MaterialPageRoute(builder: (context)=>StudentAttendanceScreen()));
-        }
-        else if(category.name=="Certificates"){
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            content: Text("Certifcates"),
-          ));
         }
         else if(category.name=="Report Card"){
           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
             content: Text("Report Card"),
           ));
-        }
+        }//k
         else{
           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
             content: Text("Quiz"),
           ));
-        }
+        }//j
 
       },
       child: Container(

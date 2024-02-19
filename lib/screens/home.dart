@@ -4,7 +4,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:intl/intl.dart';
+import 'package:vidyaniketan_app/screens/timetable_screen.dart';
 import 'package:vidyaniketan_app/utils/date.dart' as date_util;
 import 'package:vidyaniketan_app/widgets/days.dart';
 import 'package:vidyaniketan_app/widgets/days_list.dart';
@@ -77,8 +79,7 @@ class _BodyState extends State<Body> {
       });
     });
 
-
-    FirebaseFirestore.instance.collection('timetable').doc(date_util.DateUtils.weekdays[currentDateTime.weekday - 1]
+    (DateFormat('EEE').format(DateTime.now()) == "Sat" || DateFormat('EEE').format(DateTime.now()) == "Sun")? print("Holiday"): FirebaseFirestore.instance.collection('timetable').doc(date_util.DateUtils.weekdays[currentDateTime.weekday - 1]
         .toString()).get().then((DocumentSnapshot docSnap){
           DateTime time = DateTime.now();
           int bruh= (time.hour)+1;
@@ -89,7 +90,6 @@ class _BodyState extends State<Body> {
           });
 
     });
-
 
     super.initState();
   }
@@ -113,7 +113,6 @@ class _BodyState extends State<Body> {
             ],
           ),
         ),
-
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: 20),
           child: Divider(thickness: 1,color: Color(0xFF75ade7),),
@@ -121,84 +120,101 @@ class _BodyState extends State<Body> {
         Padding(
           padding: const EdgeInsets.only(top: 2, left: 20, right: 20),
           child: Container(
-            height: (DateFormat('EEE').format(DateTime.now()) == "Sat" || DateFormat('EEE').format(DateTime.now()) == "Sun")?125:152,
+            height: (DateFormat('EEE').format(DateTime.now()) == "Sat" || DateFormat('EEE').format(DateTime.now()) == "Sun")?128 :158,
             width: double.infinity,
             decoration: BoxDecoration(
                 shape: BoxShape.rectangle,
                 color: Color(0xFFe4f1ff),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(.1),
-                    blurRadius: 4.0,
-                    spreadRadius: .05,
-                  ), //BoxShadow
+                color: Colors.black.withOpacity(.1),
+                blurRadius: 4.0,
+                spreadRadius: .05,)
                 ],
                 border: Border.all(width: 1.5,color: Color(0xFF0f6cbd)),
                 borderRadius: BorderRadius.circular(20)),
             child: Padding(
               padding: const EdgeInsets.all(10.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    '${"${currentDateTime.day} " + date_util.DateUtils.months[currentDateTime.month - 1]} ${currentDateTime.year}',
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                        color: Colors.black),
+              child: GestureDetector(
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>TimeTableScreen()));
+                },
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Text(
+                          '${"${currentDateTime.day} " + date_util.DateUtils.months[currentDateTime.month - 1]} ${currentDateTime.year}',
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                              color: Colors.black),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 150),
+                          child: Icon(Iconsax.arrow_right,color: Colors.blue.shade900,),
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    Container(
+                      height: (DateFormat('EEE').format(DateTime.now()) == "Sat" || DateFormat('EEE').format(DateTime.now()) == "Sun")?70:100,
+                      width: double.infinity,
+                      decoration: const BoxDecoration(
+                          shape: BoxShape.rectangle,
+                          color: Colors.white,
+                          borderRadius: BorderRadius.only(
+                              bottomRight: Radius.circular(15),
+                              bottomLeft: Radius.circular(15),
+                              topLeft: Radius.circular(8),
+                              topRight: Radius.circular(8))),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: (DateFormat('EEE').format(DateTime.now()) == "Sat" || DateFormat('EEE').format(DateTime.now()) == "Sun")?
+                        Center(
+                            child:Text("Holiday",style: Theme.of(context).textTheme.headlineLarge,)):
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Current Period: $currentLec",style: TextStyle(fontSize: 16),),
+                            GridView.builder(
+                              physics: const ScrollPhysics(),
+                              shrinkWrap: true,
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 10,
+                                vertical: 5,
+                              ),
+                              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 5,
+                                childAspectRatio: 1,
+                                crossAxisSpacing: 10,
+                                mainAxisSpacing: 30,
+                              ),
+                              itemBuilder: (context, index) {
+                                return DaysCard(
+                                  days: daysList[index],
+                                );
+                              },
+                              itemCount: daysList.length,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    ]
+                    ),
+              )
+                  )
+                  )
                   ),
+
                   SizedBox(
                     height: 10,
                   ),
-                  Container(
-                    height: (DateFormat('EEE').format(DateTime.now()) == "Sat" || DateFormat('EEE').format(DateTime.now()) == "Sun")?70:97,
-                    width: double.infinity,
-                    decoration: const BoxDecoration(
-                        shape: BoxShape.rectangle,
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                            bottomRight: Radius.circular(15),
-                            bottomLeft: Radius.circular(15),
-                            topLeft: Radius.circular(8),
-                            topRight: Radius.circular(8))),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: (DateFormat('EEE').format(DateTime.now()) == "Sat" || DateFormat('EEE').format(DateTime.now()) == "Sun")?
-                          Center(
-                              child:Text("Holiday",style: Theme.of(context).textTheme.headlineLarge,)):
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Current Period: $currentLec",style: TextStyle(fontSize: 16),),
-                          GridView.builder(
-                            physics: const ScrollPhysics(),
-                            shrinkWrap: true,
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 10,
-                              vertical: 5,
-                            ),
-                            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 5,
-                              childAspectRatio: 1,
-                              crossAxisSpacing: 10,
-                              mainAxisSpacing: 30,
-                            ),
-                            itemBuilder: (context, index) {
-                              return DaysCard(
-                                days: daysList[index],
-                              );
-                            },
-                            itemCount: daysList.length,
-                          ),
-                        ],
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
-        ),
         Padding(
           padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
           child: Row(

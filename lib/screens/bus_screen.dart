@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:vidyaniketan_app/constants/api_key.dart';
@@ -14,15 +13,14 @@ class BusScreen extends StatefulWidget {
 }
 
 class _BusScreenState extends State<BusScreen> {
-  Location _locationController = new Location();
+  Location _locationController = Location();
 
 
   final Completer<GoogleMapController> _mapController =
       Completer<GoogleMapController>();
 
   static const LatLng _home = LatLng(19.0215711, 72.8707695);
-  static const LatLng _vidyalankar =
-      LatLng(19.029861695020962, 72.84325371847486);
+  static const LatLng _vidyalankar = LatLng(19.029861695020962, 72.84325371847486);
 
   LatLng? _currentP = null;
 

@@ -17,7 +17,7 @@ class _TeachScreenState extends State<TeachScreen> {
       appBar: AppBar(
         title: Text("Teacher Screen"),
       ),
-      drawer: MyDrawer(),
+      drawer: AltDrawer(),
       body: Center(child: ElevatedButton(onPressed: (){
         Navigator.push(context, MaterialPageRoute(builder: (context)=>AttendanceScreen()));
       }, child: Text("Open Attendance"))),

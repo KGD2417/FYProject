@@ -15,7 +15,7 @@ class _DriverScreenState extends State<DriverScreen> {
       appBar: AppBar(
         title: Text("Driver Screen",style: TextStyle(fontSize: 20),),
       ),
-      drawer: MyDrawer(),
+      drawer: AltDrawer(),
     );
   }
 }
