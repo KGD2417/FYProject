@@ -5,7 +5,7 @@ class EAppBarTheme{
   EAppBarTheme._();
 
   static const lightAppBarTheme = AppBarTheme(
-    elevation: 1,
+    elevation: 0,
     foregroundColor: Colors.white,
     centerTitle: true,
     scrolledUnderElevation: 0,

@@ -14,13 +14,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   final auth = FirebaseAuth.instance.currentUser;
   String studName="";
+  String className = "Class: ";
+  String rollNumber = "Roll No: ";
 
   @override
   void initState() {
     CollectionReference usersRef = FirebaseFirestore.instance.collection('users');
     usersRef.doc(auth?.phoneNumber.toString()).get().then((DocumentSnapshot snapshot){
       setState(() {
-        studName = snapshot.get('username');
+        studName = snapshot.get('fname');
+        studName = studName+" "+snapshot.get('lname');
+        className = className+snapshot.get("class").toString();
+        rollNumber = rollNumber+snapshot.get("rollid").toString();
       });
     });
 
@@ -37,24 +42,129 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 Container(
                   height: 200,
                   width: double.infinity,
-                  child:Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Image.asset("assets/images/profile.png",height: 160,width: 160,),
-                      Text(studName,style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white
-                      ),)
-                    ],
-                  )
-                  ,
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(40),
                       bottomRight: Radius.circular(40),
                     ),
                     color: Color(0xFF0f6cbd),
+                  ),
+                  child:Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Row(
+                      children: [
+                        const CircleAvatar(
+                          radius: 70,
+                          backgroundImage: AssetImage("assets/images/profile.png"),
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(studName,style: const TextStyle(
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white
+                            ),),
+                            Text(
+                              className+" | "+rollNumber,
+                              style: const TextStyle(
+                                fontSize: 19,
+                                color: Colors.white
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  )
+                  ,
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Container(
+                    width: double.infinity,
+                    height: 60,
+                    decoration: BoxDecoration(
+                      color: Color(0xFFe4f1ff),
+                      borderRadius: BorderRadius.circular(15),
+                      border: Border.all(width: 1,color: Color(0xFF0f6cbd)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(.1),
+                          blurRadius: 4.0,
+                          spreadRadius: .05,
+                        ), //BoxShadow
+                      ],
+                    ),
+                    child: Row(
+
+                    ),
+                  ),
+                ),
+
+
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Container(
+                    width: double.infinity,
+                    height: 60,
+                    decoration: BoxDecoration(
+                      color: Color(0xFFe4f1ff),
+                      borderRadius: BorderRadius.circular(15),
+                      border: Border.all(width: 1,color: Color(0xFF0f6cbd)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(.1),
+                          blurRadius: 4.0,
+                          spreadRadius: .05,
+                        ), //BoxShadow
+                      ],
+                    ),
+                  ),
+                ),
+
+
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Container(
+                    width: double.infinity,
+                    height: 60,
+                    decoration: BoxDecoration(
+                      color: Color(0xFFe4f1ff),
+                      borderRadius: BorderRadius.circular(15),
+                      border: Border.all(width: 1,color: Color(0xFF0f6cbd)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(.1),
+                          blurRadius: 4.0,
+                          spreadRadius: .05,
+                        ), //BoxShadow
+                      ],
+                    ),
+                  ),
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Container(
+                    width: double.infinity,
+                    height: 60,
+                    decoration: BoxDecoration(
+                      color: Color(0xFFe4f1ff),
+                      borderRadius: BorderRadius.circular(15),
+                      border: Border.all(width: 1,color: Color(0xFF0f6cbd)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(.1),
+                          blurRadius: 4.0,
+                          spreadRadius: .05,
+                        ), //BoxShadow
+                      ],
+                    ),
                   ),
                 )
               ],

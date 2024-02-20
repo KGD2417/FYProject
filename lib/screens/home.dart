@@ -75,7 +75,7 @@ class _BodyState extends State<Body> {
     final user = auth.currentUser;
     usersRef.doc(user?.phoneNumber.toString()).get().then((DocumentSnapshot snapshot){
       setState(() {
-        studName = snapshot.get('username');
+        studName = snapshot.get('fname');
       });
     });
 
@@ -280,7 +280,7 @@ class _MyAppBarState extends State<MyAppBar> {
     final user = auth.currentUser;
     usersRef.doc(user?.phoneNumber.toString()).get().then((DocumentSnapshot snapshot){
       setState(() {
-        studName = snapshot.get('username');
+        studName = snapshot.get('fname')+" "+snapshot.get("lname");
       });
     });
 
