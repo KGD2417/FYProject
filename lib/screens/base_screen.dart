@@ -206,29 +206,30 @@ class _BaseScreenState extends State<BaseScreen> {
         child: widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
+          type: BottomNavigationBarType.shifting,
           selectedItemColor: Colors.blue,
           backgroundColor: Colors.white,
-          elevation: 0,
+          elevation: 50,
+          iconSize: 55,
           items: [
             BottomNavigationBarItem(
               activeIcon: Icon(Icons.home,size: kBottomNavigationBarItemSize),
-              icon: Icon(Icons.home_outlined,size: kBottomNavigationBarItemSize),
+              icon: Icon(Icons.home_outlined,size: kBottomNavigationBarItemSize,color: Colors.blueGrey,),
               label: "Home",
             ),
             BottomNavigationBarItem(
               activeIcon: Icon(Icons.assignment,size: kBottomNavigationBarItemSize),
-              icon: Icon(Icons.assignment_outlined,size: kBottomNavigationBarItemSize),
+              icon: Icon(Icons.assignment_outlined,size: kBottomNavigationBarItemSize,color: Colors.blueGrey),
               label: "Assignments",
             ),
             BottomNavigationBarItem(
               activeIcon: Icon(Icons.view_timeline,size: kBottomNavigationBarItemSize),
-              icon: Icon(Icons.view_timeline_outlined,size: kBottomNavigationBarItemSize),
+              icon: Icon(Icons.view_timeline_outlined,size: kBottomNavigationBarItemSize,color: Colors.blueGrey),
               label: "Lectures",
             ),
             BottomNavigationBarItem(
               activeIcon: Icon(Icons.account_box,size: kBottomNavigationBarItemSize),
-              icon: Icon(Icons.account_box_outlined,size: kBottomNavigationBarItemSize),
+              icon: Icon(Icons.account_box_outlined,size: kBottomNavigationBarItemSize,color: Colors.blueGrey),
               label: "Profile",
             ),
           ],

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:iconsax/iconsax.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -16,6 +17,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   String studName="";
   String className = "Class: ";
   String rollNumber = "Roll No: ";
+  String phoneNumber = "";
+  String password = "";
 
   @override
   void initState() {
@@ -23,9 +26,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
     usersRef.doc(auth?.phoneNumber.toString()).get().then((DocumentSnapshot snapshot){
       setState(() {
         studName = snapshot.get('fname');
-        studName = studName+" "+snapshot.get('lname');
+        studName = "$studName "+snapshot.get('lname');
         className = className+snapshot.get("class").toString();
         rollNumber = rollNumber+snapshot.get("rollid").toString();
+        phoneNumber = snapshot.get("number").toString();
+        password = snapshot.get("pass").toString();
       });
     });
 
@@ -100,8 +105,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ), //BoxShadow
                       ],
                     ),
-                    child: Row(
-
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Iconsax.call,
+                            color: Colors.blue.shade900,
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Text(phoneNumber,style: TextStyle(
+                            fontSize: 20
+                          ),)
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -124,6 +143,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ), //BoxShadow
                       ],
                     ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Iconsax.lock,
+                            color: Colors.blue.shade900,
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Text(password,style: TextStyle(
+                              fontSize: 20,
+                          ),)
+                        ],
+                      ),
+                    ),
                   ),
                 ),
 
@@ -145,6 +181,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ), //BoxShadow
                       ],
                     ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Iconsax.call,
+                            color: Colors.blue.shade900,
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Text(phoneNumber,style: TextStyle(
+                              fontSize: 20
+                          ),)
+                        ],
+                      ),
+                    ),
                   ),
                 ),
 
@@ -164,6 +217,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           spreadRadius: .05,
                         ), //BoxShadow
                       ],
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Iconsax.call,
+                            color: Colors.blue.shade900,
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Text(phoneNumber,style: TextStyle(
+                              fontSize: 20
+                          ),)
+                        ],
+                      ),
                     ),
                   ),
                 )
