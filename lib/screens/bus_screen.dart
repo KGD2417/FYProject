@@ -1,18 +1,24 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:vidyaniketan_app/constants/api_key.dart';
 
 class BusScreen extends StatefulWidget {
-  const BusScreen({super.key,String? docId});
+
+  String docId = "";
+  BusScreen({super.key,required this.docId});
 
   @override
-  State<BusScreen> createState() => _BusScreenState();
+  State<BusScreen> createState() => _BusScreenState(docId: docId);
 }
 
 class _BusScreenState extends State<BusScreen> {
+  String docId;
+  _BusScreenState({required this.docId});
+
   Location _locationController = Location();
 
 
@@ -28,6 +34,7 @@ class _BusScreenState extends State<BusScreen> {
   BitmapDescriptor currentIcon = BitmapDescriptor.defaultMarker;
 
   // List<LatLng> polylineCoordinates = [];
+  CollectionReference busRef = FirebaseFirestore.instance.collection('bus_tracking');
 
   @override
   void initState() {
@@ -72,7 +79,7 @@ class _BusScreenState extends State<BusScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Bus Number: "),
+        title: Text("Bus Number: $docId"),
       ),
       body: _currentP == null
           ? const Center(
@@ -117,35 +124,19 @@ class _BusScreenState extends State<BusScreen> {
   }
 
   Future<void> getLocationUpdates() async {
-    bool _serviceEnabled;
-    PermissionStatus _permissionGranted;
+    final docRef = busRef.doc(docId);
 
-    _serviceEnabled = await _locationController.serviceEnabled();
-    if (_serviceEnabled) {
-      _serviceEnabled = await _locationController.requestService();
-    } else {
-      return;
-    }
-
-    _permissionGranted = await _locationController.hasPermission();
-    if (_permissionGranted == PermissionStatus.denied) {
-      _permissionGranted = await _locationController.requestPermission();
-
-      if (_permissionGranted != PermissionStatus.granted) {
-        return;
-      }
-    }
-
-    _locationController.onLocationChanged
-        .listen((LocationData currentLocation) {
-      if (currentLocation.latitude != null &&
-          currentLocation.longitude != null) {
+    docRef.snapshots().listen((DocumentSnapshot snapshot) {
+      if(snapshot.get('lat')!= null && snapshot.get('lon')!=null){
         setState(() {
-          _currentP =
-              LatLng(currentLocation.latitude!, currentLocation.longitude!);
+          double lat = double.parse(snapshot.get('lat').toString()) ;
+          double lon = double.parse(snapshot.get('lon').toString());
+          _currentP = LatLng(lat,lon);
           _cameraToPosition(_currentP!);
         });
       }
     });
+
+
   }
 }

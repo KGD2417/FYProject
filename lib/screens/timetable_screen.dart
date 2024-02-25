@@ -24,6 +24,12 @@ class _TimeTableScreenState extends State<TimeTableScreen> {
 
   String className = "";
 
+  bool mon = false;
+  bool tue = false;
+  bool wed = false;
+  bool thu = false;
+  bool fri = false;
+
 
   Stream<QuerySnapshot> getTimeStreams(){
     final timeStream = timetable.doc("class$className").collection(today).snapshots();
@@ -95,18 +101,43 @@ class _TimeTableScreenState extends State<TimeTableScreen> {
                           onTap: () {
                             if(daysList[index].actualName=="Mon"){
                               today = "Mon";
+                              daysList[0].currentDay=true;
+                              daysList[1].currentDay=false;
+                              daysList[2].currentDay=false;
+                              daysList[3].currentDay=false;
+                              daysList[4].currentDay=false;
                             }
                             else if(daysList[index].actualName=="Tue"){
                               today = "Tue";
+                              daysList[0].currentDay=false;
+                              daysList[1].currentDay=true;
+                              daysList[2].currentDay=false;
+                              daysList[3].currentDay=false;
+                              daysList[4].currentDay=false;
                             }
                             else if(daysList[index].actualName=="Wed"){
                               today = "Wed";
+                              daysList[0].currentDay=false;
+                              daysList[1].currentDay=false;
+                              daysList[2].currentDay=true;
+                              daysList[3].currentDay=false;
+                              daysList[4].currentDay=false;
                             }
                             else if(daysList[index].actualName=="Thu"){
                               today = "Thu";
+                              daysList[0].currentDay=false;
+                              daysList[1].currentDay=false;
+                              daysList[2].currentDay=false;
+                              daysList[3].currentDay=true;
+                              daysList[4].currentDay=false;
                             }
                             else if(daysList[index].actualName=="Fri"){
                               today = "Fri";
+                              daysList[0].currentDay=false;
+                              daysList[1].currentDay=false;
+                              daysList[2].currentDay=false;
+                              daysList[3].currentDay=false;
+                              daysList[4].currentDay=true;
                             }
                             setState(() {
 
@@ -115,7 +146,7 @@ class _TimeTableScreenState extends State<TimeTableScreen> {
                           child: Container(
                             padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 5),
                             decoration: BoxDecoration(
-                              color: daysList[index].currentDay?Color(0xFF0f6cbd): Color(0xFFe4f1ff),
+                              color: daysList[index].currentDay ? Color(0xFF0f6cbd): Color(0xFFe4f1ff),
                               borderRadius: BorderRadius.circular(15),
                               border: Border.all(width: 1,color: Color(0xFF0f6cbd)),
                               boxShadow: [

@@ -27,7 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void initState() {
-    CheckUser().isLogin(context);
+    // CheckUser().isLogin(context);
     super.initState();
   }
 
@@ -113,6 +113,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                       .credential(
                                       verificationId: verificationId,
                                       smsCode: otpController.text.toString());
+
+
                                   FirebaseAuth.instance.signInWithCredential(
                                       credential).then((value) {
                                     User? user = FirebaseAuth.instance
@@ -330,9 +332,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                   });
 
                                   if(_formKey.currentState!.validate()) {
-                                    String number = "+91${phoneController
-                                        .text}";
-                                    var kk = FirebaseFirestore.instance
+                                    String number = "+91${phoneController.text}";
+                                    FirebaseFirestore.instance
                                         .collection('users').doc(number)
                                         .get()
                                         .then((
