@@ -2,9 +2,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:vidyaniketan_app/screens/assign_screen.dart';
+import 'package:vidyaniketan_app/screens/bus_list.dart';
+import 'package:vidyaniketan_app/screens/events_list.dart';
 import 'package:vidyaniketan_app/screens/home.dart';
 import 'package:vidyaniketan_app/screens/lecture_screen.dart';
 import 'package:vidyaniketan_app/screens/profile.dart';
+import 'package:vidyaniketan_app/screens/stud_att_screen.dart';
+import 'package:vidyaniketan_app/screens/stud_quiz.dart';
 
 import '../widgets/drawer.dart';
 import 'login.dart';
@@ -114,6 +118,7 @@ class _BaseScreenState extends State<BaseScreen> {
     title: const Text("Events"),
     onTap: (){
     Navigator.pop(context);
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>EventListPage()));
     },
     ),
 
@@ -127,6 +132,7 @@ class _BaseScreenState extends State<BaseScreen> {
     title: const Text("Bus Tracking"),
     onTap: (){
     Navigator.pop(context);
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>BusListScreen()));
     },
     ),
 
@@ -140,6 +146,7 @@ class _BaseScreenState extends State<BaseScreen> {
     title: const Text("Attendance"),
     onTap: (){
     Navigator.pop(context);
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>StudentAttendanceScreen()));
     },
     ),
 
@@ -165,6 +172,7 @@ class _BaseScreenState extends State<BaseScreen> {
     title: const Text("Quiz"),
     onTap: (){
     Navigator.pop(context);
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>QuizListScreen()));
     },
     ),
 

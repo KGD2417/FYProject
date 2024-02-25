@@ -61,6 +61,7 @@ class _BodyState extends State<Body> {
 
   final auth = FirebaseAuth.instance;
   String studName = "";
+  String className = "";
 
 
   @override
@@ -76,17 +77,25 @@ class _BodyState extends State<Body> {
     usersRef.doc(user?.phoneNumber.toString()).get().then((DocumentSnapshot snapshot){
       setState(() {
         studName = snapshot.get('fname');
+        className = snapshot.get('class');
       });
     });
 
-    (DateFormat('EEE').format(DateTime.now()) == "Sat" || DateFormat('EEE').format(DateTime.now()) == "Sun")? print("Holiday"): FirebaseFirestore.instance.collection('timetable').doc(date_util.DateUtils.weekdays[currentDateTime.weekday - 1]
-        .toString()).get().then((DocumentSnapshot docSnap){
-          DateTime time = DateTime.now();
-          int bruh= (time.hour)+1;
-          print("${time.hour}to$bruh");
+    DateTime time = DateTime.now();
+    int bruh= (time.hour)+1;
 
+    (DateFormat('EEE').format(DateTime.now()) == "Sat" || DateFormat('EEE').format(DateTime.now()) == "Sun")?
+    print("Holiday"):
+    FirebaseFirestore.instance.collection('timetable')
+        .doc("class$className")
+        .collection(date_util.DateUtils.weekdays[currentDateTime.weekday - 1].toString())
+        .doc("${time.hour}to$bruh")
+        .get()
+        .then((DocumentSnapshot docSnap){
+          print("${time.hour}to$bruh");
+          print(docSnap.id);
           setState(() {
-            currentLec = docSnap.get("${time.hour}to$bruh");
+            currentLec = docSnap.get("sub");
           });
 
     });

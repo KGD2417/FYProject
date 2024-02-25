@@ -31,7 +31,8 @@ class CheckUser{
             });
     }
     else{
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>LoginScreen()));
+      Navigator.pop(context);
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginScreen()));
     }
   }
 }
