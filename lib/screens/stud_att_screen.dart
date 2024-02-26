@@ -2,8 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:vidyaniketan_app/utils/date.dart' as date_util;
+import 'package:percent_indicator/circular_percent_indicator.dart';
 
 
 class StudentAttendanceScreen extends StatefulWidget {

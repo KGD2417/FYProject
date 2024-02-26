@@ -5,6 +5,7 @@ class EElevatedButtonTheme{
 
   static final lightElevatedButtonTheme = ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
+      minimumSize: Size(double.infinity,40),
       elevation: 0,
       foregroundColor: Colors.white,
       backgroundColor: Color(0xFF0f6cbd),
@@ -13,7 +14,7 @@ class EElevatedButtonTheme{
       side: const BorderSide(color: Colors.blue),
       padding: const EdgeInsets.symmetric(vertical: 10),
       textStyle: const TextStyle(fontSize: 16,color: Colors.white,fontWeight: FontWeight.w600),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12),),
     )
   );
 

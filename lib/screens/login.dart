@@ -27,7 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void initState() {
-    // CheckUser().isLogin(context);
+    CheckUser().isLogin(context);
     super.initState();
   }
 

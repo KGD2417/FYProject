@@ -161,10 +161,6 @@ class _BodyState extends State<Body> {
                               fontSize: 18,
                               color: Colors.black),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 150),
-                          child: Icon(Iconsax.arrow_right,color: Colors.blue.shade900,),
-                        )
                       ],
                     ),
                     SizedBox(
