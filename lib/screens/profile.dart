@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -19,6 +22,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   String rollNumber = "Roll No: ";
   String phoneNumber = "";
   String password = "";
+  File? _image;
 
   @override
   void initState() {
@@ -58,9 +62,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     padding: const EdgeInsets.all(20.0),
                     child: Row(
                       children: [
-                        const CircleAvatar(
-                          radius: 70,
-                          backgroundImage: AssetImage("assets/images/profile.png"),
+                        GestureDetector(
+                          onTap: () async {
+                            final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+                            setState(() {
+                              if (pickedFile != null) {
+                                _image = File(pickedFile.path);
+                              }
+                            });
+                          },
+                          child: _image != null ? ClipOval(
+                            child: Image.file(
+                              _image!,
+                              height: 120,
+                              width: 120,
+                              fit: BoxFit.cover,
+                            ),
+                          ):
+                          Image.asset(
+                              "assets/images/profile.png",
+                            height: 120,
+                            width: 120,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                         const SizedBox(
                           width: 20,

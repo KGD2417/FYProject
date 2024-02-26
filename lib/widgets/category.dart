@@ -3,6 +3,7 @@ import 'package:vidyaniketan_app/screens/attendance_screen.dart';
 import 'package:vidyaniketan_app/screens/bus_list.dart';
 import 'package:vidyaniketan_app/screens/events_list.dart';
 import 'package:vidyaniketan_app/screens/stud_att_screen.dart';
+import 'package:vidyaniketan_app/screens/stud_event_list.dart';
 import 'package:vidyaniketan_app/screens/stud_quiz.dart';
 import '../screens/teach_quiz.dart';
 import 'cat_lis.dart';
@@ -26,7 +27,7 @@ class CategoryCard extends StatelessWidget {
           ));
         }
         else if(category.name=="Events"){
-          Navigator.push(context, MaterialPageRoute(builder: (context)=>EventListPage()));
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>StudEventListPage()));
         }
         else if(category.name=="Bus Tracking"){
           Navigator.push(context, MaterialPageRoute(builder: (context)=>BusListScreen()));
@@ -101,9 +102,7 @@ class CategoryTeacherCard extends StatelessWidget {
           ));
         }
         else if(category.name=="Events"){
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            content: Text("Events"),//d
-          ));
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>EventListPage()));
         }
         else if(category.name=="Bus Tracking"){
           Navigator.push(context, MaterialPageRoute(builder: (context)=>BusListScreen()));

@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:intl/intl.dart';
+import 'package:vidyaniketan_app/screens/teach_timetable.dart';
 import 'package:vidyaniketan_app/screens/timetable_screen.dart';
 import 'package:vidyaniketan_app/utils/date.dart' as date_util;
 import 'package:vidyaniketan_app/widgets/days.dart';
@@ -60,7 +61,6 @@ class _BodyState extends State<Body> {
   List<String> todos = <String>[];
   TextEditingController controller = TextEditingController();
 
-  String currentLec = "";
 
   final auth = FirebaseAuth.instance;
   String teachName = "";
@@ -87,9 +87,8 @@ class _BodyState extends State<Body> {
       DateTime time = DateTime.now();
       int bruh= (time.hour)+1;
       print("${time.hour}to$bruh");
-
       setState(() {
-        currentLec = docSnap.get("${time.hour}to$bruh");
+
       });
 
     });
@@ -123,7 +122,7 @@ class _BodyState extends State<Body> {
         Padding(
             padding: const EdgeInsets.only(top: 2, left: 20, right: 20),
             child: Container(
-                height: (DateFormat('EEE').format(DateTime.now()) == "Sat" || DateFormat('EEE').format(DateTime.now()) == "Sun")?128 :158,
+                height: (DateFormat('EEE').format(DateTime.now()) == "Sat" || DateFormat('EEE').format(DateTime.now()) == "Sun")?128 :138,
                 width: double.infinity,
                 decoration: BoxDecoration(
                     shape: BoxShape.rectangle,
@@ -140,7 +139,7 @@ class _BodyState extends State<Body> {
                     padding: const EdgeInsets.all(10.0),
                     child: GestureDetector(
                       onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>TimeTableScreen()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>TeachTimeTableScreen()));
                       },
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -155,17 +154,13 @@ class _BodyState extends State<Body> {
                                       fontSize: 18,
                                       color: Colors.black),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 150),
-                                  child: Icon(Iconsax.arrow_right,color: Colors.blue.shade900,),
-                                )
                               ],
                             ),
                             SizedBox(
                               height: 8,
                             ),
                             Container(
-                              height: (DateFormat('EEE').format(DateTime.now()) == "Sat" || DateFormat('EEE').format(DateTime.now()) == "Sun")?70:100,
+                              height: (DateFormat('EEE').format(DateTime.now()) == "Sat" || DateFormat('EEE').format(DateTime.now()) == "Sun")?70:80,
                               width: double.infinity,
                               decoration: const BoxDecoration(
                                   shape: BoxShape.rectangle,
@@ -183,7 +178,6 @@ class _BodyState extends State<Body> {
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text("Current Period: $currentLec",style: TextStyle(fontSize: 16),),
                                     GridView.builder(
                                       physics: const ScrollPhysics(),
                                       shrinkWrap: true,

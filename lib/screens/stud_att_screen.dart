@@ -28,31 +28,35 @@ class _StudentAttendanceScreenState extends State<StudentAttendanceScreen> {
   String rollID="";
   String present1 = "";
 
+  final auth = FirebaseAuth.instance;
+
+
   Future<void> getUser() async{
-    final auth = FirebaseAuth.instance;
     final user = auth.currentUser;
-
     CollectionReference usersRef = FirebaseFirestore.instance.collection('users');
-
 
     usersRef.doc(user!.phoneNumber.toString()).get().then((DocumentSnapshot documentsnapshot){
       setState(() {
         classNo = documentsnapshot.get('class');
         rollID = documentsnapshot.get('rollid');
-
       });
+
       print(classNo);
       print(rollID);
 
       getDate(classNo, rollID);
     });
+
+
   }
 
   Future<void> getDate(String classs,String roll) async{
     print(classs);
     print(roll);
     CollectionReference divRef = FirebaseFirestore.instance.collection('class${classs}Att');
-    divRef.doc('${"${fullDate.day} " + date_util.DateUtils.months[fullDate.month - 1]} ${fullDate.year}').get().then((DocumentSnapshot documentsnapshot){
+    divRef.doc('${"${fullDate.day} " + date_util.DateUtils.months[fullDate.month - 1]} ${fullDate.year}')
+        .get()
+        .then((DocumentSnapshot documentsnapshot){
       setState(() {
         present1 = documentsnapshot.get(roll);
       });
@@ -82,8 +86,6 @@ class _StudentAttendanceScreenState extends State<StudentAttendanceScreen> {
     int fullLen = totalStream.docs.length;
 
 
-
-
     setState(() {
       percentage = (attLen/fullLen) * 100;
       abPerc = 100 - percentage;
@@ -92,6 +94,7 @@ class _StudentAttendanceScreenState extends State<StudentAttendanceScreen> {
 
       // presPerc = "$percentage%";
       // absePerc = "$abPerc%";
+
       if(present!="P"){
         present1 = "Absent";
       }
@@ -113,6 +116,17 @@ class _StudentAttendanceScreenState extends State<StudentAttendanceScreen> {
     setState(() {
       getUser();
     });
+  }
+
+
+
+
+  Stream<QuerySnapshot> getAttStream(){
+    final CollectionReference attendance = FirebaseFirestore.instance.collection('class${classNo}Att');
+
+
+    final attStream = attendance.snapshots();
+    return attStream;
   }
 
   @override
@@ -274,6 +288,60 @@ class _StudentAttendanceScreenState extends State<StudentAttendanceScreen> {
                 ],
               ),
             ),
+
+            StreamBuilder<QuerySnapshot>(
+              stream: getAttStream(),
+              builder: (context,snapshots){
+                if(snapshots.hasData){
+                  List attList = snapshots.data!.docs;
+
+                  return ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: attList.length,
+                      itemBuilder: (context,index){
+                        DocumentSnapshot document =attList[index];
+                        String docId =document.id;
+
+                        //get busNo from each doc
+                        Map<String,dynamic> data =
+                        document.data() as Map<String,dynamic>;
+                        String presenti = data[rollID].toString();
+
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: 10,right: 20,left: 20),
+                          child: ListTile(
+
+                            shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.all(Radius.circular(10)),
+                                side: BorderSide(
+                                  color: Colors.black,
+
+                                )
+                            ),
+                            title: Text(
+                              docId,
+                              style: const TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold
+                              ),
+                            ),
+                            trailing: Text(
+                              presenti=="P"?"Present":"Absent",
+                              style: const TextStyle(
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+                        );
+
+
+                      });
+                }
+                else{
+                  return const Text("No buses..");
+                }
+              },
+            )
 
           ],
         ),

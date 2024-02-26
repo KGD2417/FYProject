@@ -94,10 +94,6 @@ class _BodyState extends State<Body> {
         .then((DocumentSnapshot docSnap){
           print("${time.hour}to$bruh");
           print(docSnap.id);
-          setState(() {
-            currentLec = docSnap.get("sub");
-          });
-
     });
 
     super.initState();
@@ -129,7 +125,7 @@ class _BodyState extends State<Body> {
         Padding(
           padding: const EdgeInsets.only(top: 2, left: 20, right: 20),
           child: Container(
-            height: (DateFormat('EEE').format(DateTime.now()) == "Sat" || DateFormat('EEE').format(DateTime.now()) == "Sun")?128 :158,
+            height: (DateFormat('EEE').format(DateTime.now()) == "Sat" || DateFormat('EEE').format(DateTime.now()) == "Sun")?128 :138,
             width: double.infinity,
             decoration: BoxDecoration(
                 shape: BoxShape.rectangle,
@@ -167,7 +163,7 @@ class _BodyState extends State<Body> {
                       height: 8,
                     ),
                     Container(
-                      height: (DateFormat('EEE').format(DateTime.now()) == "Sat" || DateFormat('EEE').format(DateTime.now()) == "Sun")?70:100,
+                      height: (DateFormat('EEE').format(DateTime.now()) == "Sat" || DateFormat('EEE').format(DateTime.now()) == "Sun")?70:80,
                       width: double.infinity,
                       decoration: const BoxDecoration(
                           shape: BoxShape.rectangle,
@@ -185,7 +181,6 @@ class _BodyState extends State<Body> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("Current Period: $currentLec",style: TextStyle(fontSize: 16),),
                             GridView.builder(
                               physics: const ScrollPhysics(),
                               shrinkWrap: true,
