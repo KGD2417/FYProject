@@ -28,7 +28,6 @@ class _BaseScreenState extends State<BaseScreen> {
   static const List<Widget> widgetOptions = <Widget>[
     HomeScreen(),
     AssignmentScreen(),
-    LectureScreen(),
     ProfileScreen(),
   ];
   @override
@@ -214,9 +213,9 @@ class _BaseScreenState extends State<BaseScreen> {
         child: widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.shifting,
-          selectedItemColor: Colors.blue,
-          backgroundColor: Colors.white,
+        showUnselectedLabels: false,
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: Color(0xFF0f6cbd),
           elevation: 50,
           iconSize: 55,
           items: [
@@ -229,11 +228,6 @@ class _BaseScreenState extends State<BaseScreen> {
               activeIcon: Icon(Icons.assignment,size: kBottomNavigationBarItemSize),
               icon: Icon(Icons.assignment_outlined,size: kBottomNavigationBarItemSize,color: Colors.blueGrey),
               label: "Assignments",
-            ),
-            BottomNavigationBarItem(
-              activeIcon: Icon(Icons.view_timeline,size: kBottomNavigationBarItemSize),
-              icon: Icon(Icons.view_timeline_outlined,size: kBottomNavigationBarItemSize,color: Colors.blueGrey),
-              label: "Lectures",
             ),
             BottomNavigationBarItem(
               activeIcon: Icon(Icons.account_box,size: kBottomNavigationBarItemSize),

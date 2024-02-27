@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:vidyaniketan_app/screens/assign_screen.dart';
 import 'package:vidyaniketan_app/screens/attendance_screen.dart';
 import 'package:vidyaniketan_app/screens/bus_list.dart';
 import 'package:vidyaniketan_app/screens/events_list.dart';
 import 'package:vidyaniketan_app/screens/stud_att_screen.dart';
 import 'package:vidyaniketan_app/screens/stud_event_list.dart';
 import 'package:vidyaniketan_app/screens/stud_quiz.dart';
+import 'package:vidyaniketan_app/screens/teach_assign_page.dart';
 import '../screens/teach_quiz.dart';
 import 'cat_lis.dart';
 
@@ -22,9 +24,7 @@ class CategoryCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         if(category.name=="Assignments"){
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            content: Text("Assignments"),//
-          ));
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeAssignmentScreen()));
         }
         else if(category.name=="Events"){
           Navigator.push(context, MaterialPageRoute(builder: (context)=>StudEventListPage()));
@@ -97,9 +97,7 @@ class CategoryTeacherCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         if(category.name=="Assignments"){
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            content: Text("Assignments"),//
-          ));
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>ClassListPage()));
         }
         else if(category.name=="Events"){
           Navigator.push(context, MaterialPageRoute(builder: (context)=>EventListPage()));
