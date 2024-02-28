@@ -21,7 +21,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
   String className = "Class: ";
   String rollNumber = "Roll No: ";
   String phoneNumber = "";
-  String password = "";
+  String busNo = "";
+  String addr = "";
+  String teacherName = "";
   File? _image;
 
   @override
@@ -34,7 +36,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
         className = className+snapshot.get("class").toString();
         rollNumber = rollNumber+snapshot.get("rollid").toString();
         phoneNumber = snapshot.get("number").toString();
-        password = snapshot.get("pass").toString();
+        teacherName = snapshot.get("teachername").toString();
+        busNo = snapshot.get("busNo").toString();
+        addr = snapshot.get("addr").toString();
       });
     });
 
@@ -172,13 +176,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: Row(
                         children: [
                           Icon(
-                            Iconsax.lock,
+                            Iconsax.teacher,
                             color: Colors.blue.shade900,
                           ),
                           SizedBox(
                             width: 20,
                           ),
-                          Text(password,style: TextStyle(
+                          Text(
+                            teacherName,style: TextStyle(
                               fontSize: 20,
                           ),)
                         ],
@@ -210,13 +215,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: Row(
                         children: [
                           Icon(
-                            Iconsax.call,
+                            Iconsax.bus,
                             color: Colors.blue.shade900,
                           ),
                           SizedBox(
                             width: 20,
                           ),
-                          Text(phoneNumber,style: TextStyle(
+                          Text(
+                            "BusNumber$busNo",
+                            style: TextStyle(
                               fontSize: 20
                           ),)
                         ],
@@ -247,15 +254,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: Row(
                         children: [
                           Icon(
-                            Iconsax.call,
+                            Iconsax.location,
                             color: Colors.blue.shade900,
                           ),
                           SizedBox(
                             width: 20,
                           ),
-                          Text(phoneNumber,style: TextStyle(
-                              fontSize: 20
-                          ),)
+                          Flexible(
+                            child: Text(
+                              addr,style: TextStyle(
+                                fontSize: 20
+                            ),
+                            softWrap: true,
+                            ),
+                          )
                         ],
                       ),
                     ),

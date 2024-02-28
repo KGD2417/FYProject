@@ -200,8 +200,10 @@ class _BaseScreenState extends State<BaseScreen> {
     leading: const Icon(Icons.logout_rounded),
     title: const Text("Logout"),
     onTap: (){
-    FirebaseAuth.instance.signOut();
-    Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=>LoginScreen()));
+      FirebaseAuth.instance.signOut().then((value)
+      {
+        Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=>LoginScreen()));
+      });
     },
     )
 
