@@ -62,7 +62,7 @@ class _QuizListScreenState extends State<QuizListScreen> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             IconButton(onPressed: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=>const QuizScreen()));
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>QuizScreen()));
                             }, icon: const Icon(Icons.arrow_circle_right_outlined))
                           ],
                         ),
