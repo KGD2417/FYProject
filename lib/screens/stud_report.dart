@@ -92,10 +92,8 @@ class _StudReportScreenState extends State<StudReportScreen> {
                             Center(
                               child: Column(
                                 children: [
-                                  Text(
-                                    "Vidya Niketan ",
-                                    style: TextStyle(
-                                        fontSize: 30,
+                                  Text("Vidya Niketan ",
+                                    style: TextStyle(fontSize: 30,
                                         fontWeight: FontWeight.bold),
                                   ),
                                   Text(
