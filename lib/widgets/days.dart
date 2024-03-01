@@ -26,24 +26,24 @@ class _DaysCardState extends State<DaysCard> {
   }
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>TimeTableScreen()));
-      },
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 5),  
-        decoration: BoxDecoration(
-          color: widget.days.currentDay?Color(0xFF0f6cbd): Color(0xFFe4f1ff),
-          borderRadius: BorderRadius.circular(15),
-          border: Border.all(width: 1,color: Color(0xFF0f6cbd)),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(.1),
-              blurRadius: 4.0,
-              spreadRadius: .05,
-            ), //BoxShadow
-          ],
-        ),
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 5),
+      decoration: BoxDecoration(
+        color: widget.days.currentDay?Color(0xFF0f6cbd): Color(0xFFe4f1ff),
+        borderRadius: BorderRadius.circular(15),
+        border: Border.all(width: 1,color: Color(0xFF0f6cbd)),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(.1),
+            blurRadius: 4.0,
+            spreadRadius: .05,
+          ), //BoxShadow
+        ],
+      ),
+      child: InkWell(
+        onTap: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>TimeTableScreen()));
+        },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,

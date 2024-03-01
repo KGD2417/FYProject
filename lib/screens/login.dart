@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:lottie/lottie.dart';
 import 'package:pinput/pinput.dart';
 import 'package:vidyaniketan_app/screens/driver_screen.dart';
 import 'package:vidyaniketan_app/screens/home.dart';
@@ -107,7 +108,11 @@ class _LoginScreenState extends State<LoginScreen> {
                               onPressed: () async {
                                 try {
                                   showDialog(context: context, builder: (context){
-                                    return const Center(child: CircularProgressIndicator());
+                                    return Center(
+                                        child: LottieBuilder.asset(
+                                          "assets/images/Loading.json",
+                                        )
+                                    );
                                   });
                                   PhoneAuthCredential credential = await PhoneAuthProvider
                                       .credential(
@@ -328,7 +333,11 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: ElevatedButton(
                                 onPressed: () async {
                                   showDialog(context: context, builder: (context){
-                                    return const Center(child: CircularProgressIndicator());
+                                    return Center(
+                                        child: LottieBuilder.asset(
+                                          "assets/images/Loading.json",
+                                        )
+                                    );
                                   });
 
                                   if(_formKey.currentState!.validate()) {

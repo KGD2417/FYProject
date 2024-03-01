@@ -57,43 +57,40 @@ class _EventListPageState extends State<EventListPage> {
               final event = events[index];
               final eventDate = (event['Date'] as Timestamp).toDate();
               final formattedDate = DateFormat.yMd().format(eventDate);
-              return GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => MediaGalleryScreen(eventName: event.id),
-                    ),
-                  );
-                },
-                child: Container(
-                  margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16), // Add margin for padding
-                  decoration: const BoxDecoration(
-                    // border: Border.all(
-                    //   color: Colors.black, // Set border color here
-                    //   width: 2, // Set border width here
-                    // ),
-                    // borderRadius: BorderRadius.circular(8), // Set border radius here
-                  ),
-                  child: ListTile(
-                    title: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(event.id),
-                        Text(formattedDate),
-                      ],
-                    ),
-                    leading: Container(
-                      decoration: const BoxDecoration(
-                        // border: Border.all(
-                        //   color: Colors.black, // Set border color here
-                        //   width: 2, // Set border width here
-                        // ),
-                        // borderRadius: BorderRadius.circular(30), // Set border radius here
+              return Container(
+                margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16), // Add margin for padding
+                decoration: const BoxDecoration(
+                ),
+                child: Material(
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => MediaGalleryScreen(eventName: event.id),
+                        ),
+                      );
+                    },
+                    child: ListTile(
+                      title: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(event.id),
+                          Text(formattedDate),
+                        ],
                       ),
-                      child: CircleAvatar(
-                        radius: 28, // Adjust the radius to match the border width
-                        backgroundImage: NetworkImage(event['imageUrl']),
+                      leading: Container(
+                        decoration: const BoxDecoration(
+                          // border: Border.all(
+                          //   color: Colors.black, // Set border color here
+                          //   width: 2, // Set border width here
+                          // ),
+                          // borderRadius: BorderRadius.circular(30), // Set border radius here
+                        ),
+                        child: CircleAvatar(
+                          radius: 28, // Adjust the radius to match the border width
+                          backgroundImage: NetworkImage(event['imageUrl']),
+                        ),
                       ),
                     ),
                   ),

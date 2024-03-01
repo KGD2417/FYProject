@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:photo_view/photo_view.dart';
 
 class ListNamePage extends StatefulWidget {
@@ -59,7 +60,11 @@ class _ListNamePageState extends State<ListNamePage> {
         stream: _imageUrlsStream,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
+            return Center(
+                child: LottieBuilder.asset(
+                  "assets/images/Loading.json",
+                )
+            );
           }
           if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));

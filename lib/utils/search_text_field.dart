@@ -9,6 +9,8 @@ class SearchTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      enabled: true,
+      readOnly: true,
       autofocus: false,
       onTap: (){
         Navigator.push(context, MaterialPageRoute(builder: (context)=>SearchScreen()));

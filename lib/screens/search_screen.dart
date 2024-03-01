@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -35,6 +36,31 @@ class _SearchScreenState extends State<SearchScreen> {
                   ),
                   isDense: true
               ),
+            ),
+            PopupMenuButton(
+              color: Color(0xFFe4f1ff),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  side: BorderSide(color: Color(0xFF0f6cbd), width: 1)
+              ),
+              child: Text("Choose the item"),
+              itemBuilder: (BuildContext context) => [
+                PopupMenuItem(
+                    child: Text(
+                      "English",
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    )),
+                PopupMenuItem(
+                    child: Text(
+                      "Hindi",
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    )),
+                PopupMenuItem(
+                    child: Text(
+                      "Marathi",
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    )),
+              ],
             ),
           ],
         ),

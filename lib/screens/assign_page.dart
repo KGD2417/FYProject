@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:lottie/lottie.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 import 'package:intl/intl.dart';
@@ -27,8 +28,10 @@ class AssignPage extends StatelessWidget {
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator(),
+            return Center(
+                child: LottieBuilder.asset(
+                  "assets/images/Loading.json",
+                )
             );
           }
 
@@ -105,8 +108,10 @@ class AssignPage extends StatelessWidget {
                       .snapshots(),
                   builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
+                      return Center(
+                          child: LottieBuilder.asset(
+                            "assets/images/Loading.json",
+                          )
                       );
                     }
 
@@ -248,9 +253,11 @@ class AssignPage extends StatelessWidget {
               );
             },
             scrollPhysics: const BouncingScrollPhysics(),
-            loadingBuilder: (context, event) => const Center(
-              child: CircularProgressIndicator(),
-            ),
+            loadingBuilder: (context, event) => Center(
+          child: LottieBuilder.asset(
+          "assets/images/Loading.json",
+          )
+        ),
             backgroundDecoration: const BoxDecoration(color: Colors.black),
             pageController: PageController(initialPage: initialIndex),
           ),
@@ -274,8 +281,10 @@ class AssignPage extends StatelessWidget {
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator(),
+            return Center(
+            child: LottieBuilder.asset(
+            "assets/images/Loading.json",
+            )
             );
           }
 
@@ -283,17 +292,19 @@ class AssignPage extends StatelessWidget {
             return const Text('No images available');
           }
           var imageUrls = snapshot.data!.docs.map((doc) => doc['imageUrl'] as String).toList();
-          return Column(
-            children: [
-              // Adjust spacing above GridView
-              const SizedBox(height: 8),
-              MediaQuery.removePadding(
-                context: context,
-                removeTop: true,
-                child: _buildImagesGridView(imageUrls),
-              ),
-              const Divider(color: Colors.black), // Black Divider after images
-            ],
+          return SingleChildScrollView(
+            child: Column(
+              children: [
+                // Adjust spacing above GridView
+                const SizedBox(height: 8),
+                MediaQuery.removePadding(
+                  context: context,
+                  removeTop: true,
+                  child: _buildImagesGridView(imageUrls),
+                ),
+                const Divider(color: Colors.black), // Black Divider after images
+              ],
+            ),
           );
         },
       ),

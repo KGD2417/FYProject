@@ -3,6 +3,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:lottie/lottie.dart';
 import 'package:photo_view/photo_view.dart';
 import 'dart:io';
 
@@ -94,7 +95,11 @@ class _MediaGalleryScreenState extends State<MediaGalleryScreen> {
         stream: _imageUrlsStream,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
+            return Center(
+                child: LottieBuilder.asset(
+                  "assets/images/Loading.json",
+                )
+            );
           }
           if (!snapshot.hasData || snapshot.data!.isEmpty) {
             return const Center(child: Text('No images available'));
@@ -107,20 +112,20 @@ class _MediaGalleryScreenState extends State<MediaGalleryScreen> {
             ),
             itemCount: snapshot.data!.length,
             itemBuilder: (context, index) {
-              return GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => FullScreenImageViewer(
-                        imageUrls: snapshot.data!,
-                        initialIndex: index,
+              return ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => FullScreenImageViewer(
+                          imageUrls: snapshot.data!,
+                          initialIndex: index,
+                        ),
                       ),
-                    ),
-                  );
-                },
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
+                    );
+                  },
                   child: Image.network(
                     snapshot.data![index],
                     fit: BoxFit.cover,

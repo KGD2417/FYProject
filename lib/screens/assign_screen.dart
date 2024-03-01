@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:lottie/lottie.dart';
 
 import 'assign_page.dart';
 
@@ -27,8 +28,10 @@ class _HomeAssignmentScreenState extends State<HomeAssignmentScreen> {
               .snapshots(),
           builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(
-                child: CircularProgressIndicator(),
+              return Center(
+                  child: LottieBuilder.asset(
+                    "assets/images/Loading.json",
+                  )
               );
             }
 
@@ -101,8 +104,10 @@ class _AssignmentScreenState extends State<AssignmentScreen> {
                 .snapshots(),
             builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Center(
-                  child: CircularProgressIndicator(),
+                return Center(
+                    child: LottieBuilder.asset(
+                      "assets/images/Loading.json",
+                    )
                 );
               }
 

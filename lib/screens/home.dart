@@ -122,9 +122,9 @@ class _BodyState extends State<Body> {
           padding: EdgeInsets.symmetric(horizontal: 20),
           child: Divider(thickness: 1,color: Color(0xFF75ade7),),
         ),
-        Padding(
-          padding: const EdgeInsets.only(top: 2, left: 20, right: 20),
-          child: Container(
+        Container(
+          padding: EdgeInsets.only(top: 2, left: 20, right: 20),
+          child: Ink(
             height: (DateFormat('EEE').format(DateTime.now()) == "Sat" || DateFormat('EEE').format(DateTime.now()) == "Sun")?128 :138,
             width: double.infinity,
             decoration: BoxDecoration(
@@ -138,12 +138,13 @@ class _BodyState extends State<Body> {
                 ],
                 border: Border.all(width: 1.5,color: Color(0xFF0f6cbd)),
                 borderRadius: BorderRadius.circular(20)),
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: GestureDetector(
-                onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>TimeTableScreen()));
-                },
+            child: InkWell(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>TimeTableScreen()));
+              },
+              borderRadius: BorderRadius.circular(20),
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -206,11 +207,11 @@ class _BodyState extends State<Body> {
                       ),
                     ),
                     ]
+                    )
                     ),
-              )
-                  )
-                  )
+            )
                   ),
+        ),
 
                   SizedBox(
                     height: 10,

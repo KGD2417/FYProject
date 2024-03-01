@@ -222,7 +222,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             width: 20,
                           ),
                           Text(
-                            "BusNumber$busNo",
+                            "BusNumber: $busNo",
                             style: TextStyle(
                               fontSize: 20
                           ),)
