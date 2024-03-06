@@ -17,6 +17,6 @@ class App extends StatelessWidget {
         themeMode: ThemeMode.light,
         theme: EAppTheme.lightTheme,
         darkTheme: EAppTheme.darkTheme,
-        home: LoginScreen());
+        home: SplashScreen());
   }
 }

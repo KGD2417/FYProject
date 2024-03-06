@@ -123,24 +123,24 @@ class _BodyState extends State<Body> {
           child: Divider(thickness: 1,color: Color(0xFF75ade7),),
         ),
         Container(
-          padding: EdgeInsets.only(top: 2, left: 20, right: 20),
+          padding: const EdgeInsets.only(top: 2, left: 20, right: 20),
           child: Ink(
             height: (DateFormat('EEE').format(DateTime.now()) == "Sat" || DateFormat('EEE').format(DateTime.now()) == "Sun")?128 :138,
             width: double.infinity,
             decoration: BoxDecoration(
                 shape: BoxShape.rectangle,
-                color: Color(0xFFe4f1ff),
+                color: const Color(0xFFe4f1ff),
                 boxShadow: [
                   BoxShadow(
                 color: Colors.black.withOpacity(.1),
                 blurRadius: 4.0,
                 spreadRadius: .05,)
                 ],
-                border: Border.all(width: 1.5,color: Color(0xFF0f6cbd)),
+                border: Border.all(width: 1.5,color: const Color(0xFF0f6cbd)),
                 borderRadius: BorderRadius.circular(20)),
             child: InkWell(
               onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>TimeTableScreen()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>const TimeTableScreen()));
               },
               borderRadius: BorderRadius.circular(20),
               child: Padding(
@@ -160,7 +160,7 @@ class _BodyState extends State<Body> {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 8,
                     ),
                     Container(
@@ -213,7 +213,7 @@ class _BodyState extends State<Body> {
                   ),
         ),
 
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
         Padding(
@@ -231,7 +231,7 @@ class _BodyState extends State<Body> {
             ],
           ),
         ),
-        Padding(
+        const Padding(
           padding: EdgeInsets.symmetric(horizontal: 20),
           child: Divider(thickness: 1,color: Color(0xFF75ade7),),
         ),

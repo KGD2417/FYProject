@@ -1,6 +1,7 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:vidyaniketan_app/onboard/onboardscreen.dart';
 import 'package:vidyaniketan_app/screens/login.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -18,7 +19,7 @@ class SplashScreen extends StatelessWidget {
             )
           ],
         ),
-      nextScreen: LoginScreen(),
+      nextScreen: OnBoardScreen(),
       splashIconSize: 400,
     );
   }

@@ -63,7 +63,7 @@ class _TimeTableScreenState extends State<TimeTableScreen> {
         Column(
           children: [
             Container(
-              height: (DateFormat('EEE').format(DateTime.now()) == "Sat" || DateFormat('EEE').format(DateTime.now()) == "Sun")?70:90,
+              height: 90,
               width: double.infinity,
               decoration: const BoxDecoration(
                   shape: BoxShape.rectangle,

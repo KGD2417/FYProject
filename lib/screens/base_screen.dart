@@ -86,8 +86,6 @@ class _BaseScreenState extends State<BaseScreen> {
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
               topRight: Radius.circular(20), bottomRight: Radius.circular(20)),
-          side: BorderSide(
-              color: Color(0xFF0f6cbd), style: BorderStyle.solid, width: 2),
         ),
         child: SingleChildScrollView(
           child: Column(
@@ -96,14 +94,17 @@ class _BaseScreenState extends State<BaseScreen> {
               Container(
                 width: double.infinity,
                 height: 200,
-                color: Colors.blue,
+                color: Color(0xFF0f6cbd),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset("assets/images/profile.png", height: 110),
+                    Image.asset("assets/images/profile.png", height: 120),
                     Text(
                       studName,
-                      style: Theme.of(context).textTheme.headlineSmall,
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white
+                      ),
                     ),
                   ],
                 ),
@@ -243,7 +244,7 @@ class _BaseScreenState extends State<BaseScreen> {
                 onTap: () {
                   Navigator.pop(context);
                   setState(() {
-                    _selectedIndex = 3;
+                    _selectedIndex = 2;
                   });
                 },
                 child: ListTile(

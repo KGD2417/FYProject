@@ -1,9 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
-import 'package:vidyaniketan_app/screens/assign_screen.dart';
-
-import '../screens/base_screen.dart';
 import '../screens/login.dart';
 
 
@@ -22,7 +18,7 @@ class _AltDrawerState extends State<AltDrawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Color(0xFFe4f1ff),
+      backgroundColor: const Color(0xFFe4f1ff),
       shadowColor: Colors.blue,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(topRight: Radius.circular(20),bottomRight: Radius.circular(20)),
@@ -53,7 +49,7 @@ class _AltDrawerState extends State<AltDrawer> {
               },
             ),
 
-            Divider(
+            const Divider(
               thickness: 1,
             ),
 
@@ -66,7 +62,7 @@ class _AltDrawerState extends State<AltDrawer> {
               },
             ),
 
-            Divider(
+            const Divider(
               thickness: 1,
             ),
 
@@ -79,7 +75,7 @@ class _AltDrawerState extends State<AltDrawer> {
               },
             ),
 
-            Divider(
+            const Divider(
               thickness: 1,
             ),
 
@@ -92,7 +88,7 @@ class _AltDrawerState extends State<AltDrawer> {
               },
             ),
 
-            Divider(
+            const Divider(
               thickness: 1,
             ),
 
@@ -105,7 +101,7 @@ class _AltDrawerState extends State<AltDrawer> {
               },
             ),
 
-            Divider(
+            const Divider(
               thickness: 1,
             ),
             //Report Card
@@ -117,7 +113,7 @@ class _AltDrawerState extends State<AltDrawer> {
               },
             ),
 
-            Divider(
+            const Divider(
               thickness: 1,
             ),
 
@@ -130,7 +126,7 @@ class _AltDrawerState extends State<AltDrawer> {
               },
             ),
 
-            Divider(
+            const Divider(
               thickness: 1,
             ),
 
@@ -143,7 +139,7 @@ class _AltDrawerState extends State<AltDrawer> {
               },
             ),
 
-            Divider(
+            const Divider(
               thickness: 1,
             ),
 
@@ -154,7 +150,7 @@ class _AltDrawerState extends State<AltDrawer> {
               onTap: (){
                 FirebaseAuth.instance.signOut().then((value)
                 {
-                  Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=>LoginScreen()));
+                  Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=>const LoginScreen()));
                 });
               },
             )

@@ -26,11 +26,11 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
 
-  @override
-  void initState() {
-    CheckUser().isLogin(context);
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   CheckUser().isLogin(context);
+  //   super.initState();
+  // }
 
   TextEditingController phoneController = TextEditingController();
   TextEditingController otpController = TextEditingController();
