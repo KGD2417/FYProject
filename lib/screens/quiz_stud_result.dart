@@ -63,7 +63,9 @@ class ResultScreen extends StatelessWidget{
                 )
               ],
             ),
-            SizedBox(height: 150),
+            SizedBox(
+              height: 20,
+            ),
 
             RectangularButton(
                 onPressed: () {
