@@ -47,7 +47,7 @@ Ensure you have the following installed:
 
 ### Clone the Repository
 ```sh
-git clone https://github.com/yourusername/FYProject.git
+git clone https://github.com/KGD2417/FYProject.git
 cd FYProject
 ```
 
