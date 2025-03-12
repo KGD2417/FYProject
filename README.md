@@ -15,7 +15,11 @@ FYProject is a **Flutter-based** school management application developed as a **
 - **Assignments & Notices**
   - Teachers can upload assignments and announcements.
   - Students can submit assignments online.
-
+ 
+- **Live Bus Tracking**
+  - Live Map based Bus Tracking System to provide safety for the students
+  - Parents can see where the bus is currently
+    
 - **Parent-Teacher Communication**
   - Direct messaging between parents and teachers.
   - Notifications for updates and announcements.
